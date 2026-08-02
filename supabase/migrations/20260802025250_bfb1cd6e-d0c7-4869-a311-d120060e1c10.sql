@@ -1,0 +1,1 @@
+UPDATE public.access_keys SET device_id = NULL, redeemed_at = NULL;
