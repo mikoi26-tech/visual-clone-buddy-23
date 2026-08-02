@@ -1,0 +1,371 @@
+
+<button class="settings-fixed" onclick="openSettings()" title="Settings"><img alt="Settings" class="settings-img" decoding="async" src="./assets/settings-white.png"/></button>
+<div class="loader" id="loader"><div><img alt="" decoding="async" src="./assets/epic-logo.png"/><div class="loader-line"><span></span></div></div></div>
+<header class="topbar">
+<div class="top-inner">
+<button class="back-arrow" onclick="goPage('discover')">‹</button>
+<img alt="Epic Games" class="top-epic-logo" decoding="async" loading="lazy" src="./assets/epic-logo.png"/>
+<div class="search"><span class="search-mark"></span><input id="searchInput" placeholder="Search store"/></div>
+<button class="navtab active" data-page="discover" onclick="goPage('discover')">Discover</button>
+<button class="navtab" data-page="browse" onclick="goPage('browse')">Add-Ons</button>
+<button class="navtab" data-page="experiences" onclick="goPage('experiences')">Experiences</button>
+<button class="navtab" data-page="news" onclick="goPage('news')">News</button>
+<button class="navtab" data-page="faq" onclick="goPage('faq')">FAQ</button>
+<div class="top-icons">
+<button class="icon-btn top-action wishlist-top" onclick="goPage('wishlist')" title="Wishlist"><img alt="Wishlist" class="wishlist-heart-icon" decoding="async" loading="lazy" src="./assets/wishlist-heart-clean.png"/></button>
+<button class="icon-btn top-action cart-top" onclick="openCartDrawer()" title="Cart"><span class="css-bag-icon"></span><span class="cart-count" id="cartCount">0</span></button>
+<span class="divider"></span>
+<div class="avatar" id="avatarLetter">T</div>
+</div>
+</div>
+</header>
+<main class="page active" id="discoverPage">
+<section class="listing shell" id="listing">
+<h1 class="listing-title">Fortnite<br/>DLC &amp; Add-Ons</h1>
+<div class="tabs">
+<button class="active" onclick="goPage('discover')">Overview</button>
+<button onclick="goPage('browse')">Add-Ons</button>
+<button onclick="goPage('experiences')">Experiences</button>
+<button onclick="goPage('faq')">FAQ</button>
+</div>
+<div class="addon-layout">
+<div>
+<section class="item-section" id="vbucksSection">
+<h2 class="section-title">V-Bucks</h2>
+<p class="section-subtitle">Choose a V-Bucks pack for your account.</p>
+<div class="grid" id="vbucksGrid"></div>
+</section>
+<section class="item-section" id="skinsSection">
+<h2 class="section-title">Skins</h2>
+<p class="section-subtitle">Outfits and character cosmetics.</p>
+<div class="grid" id="skinsGrid"></div>
+</section>
+<section class="item-section" id="pickaxesSection">
+<h2 class="section-title">Pickaxes</h2>
+<p class="section-subtitle">Harvesting tools and item cosmetics.</p>
+<div class="grid" id="pickaxesGrid"></div>
+</section>
+</div>
+<aside class="filter-panel">
+<div class="filter-title">Filters <button onclick="resetFilters()">Reset</button></div>
+<details class="filter-accordion" open="">
+<summary>Keywords</summary>
+<input id="filterKeyword" oninput="applyFilters()" placeholder="Search add-ons"/>
+</details>
+<details class="filter-accordion" open="">
+<summary>Price</summary>
+<select id="filterPrice" onchange="applyFilters()">
+<option value="all">All prices</option>
+<option value="under25">Under $25 USD</option>
+<option value="under100">Under $100 USD</option>
+<option value="under200">Under $200 USD</option>
+<option value="200plus">$200+ USD</option>
+</select>
+</details>
+<details class="filter-accordion" open="">
+<summary>Type</summary>
+<select id="filterType" onchange="applyFilters()">
+<option value="all">All types</option>
+<option value="vbucks">V-Bucks</option>
+<option value="skin">Skins</option>
+<option value="pickaxe">Pickaxes</option>
+</select>
+</details>
+<details class="filter-accordion" open="">
+<summary>Platform</summary>
+<select id="filterPlatform" onchange="applyFilters()">
+<option value="all">All platforms</option>
+<option value="Windows">Windows</option>
+</select>
+</details>
+</aside>
+</div>
+</section>
+</main>
+<main class="page shell" id="browsePage">
+<h1 class="listing-title">Fortnite<br/>Add-Ons</h1>
+<div class="tabs"><button onclick="goPage('discover')">Overview</button><button class="active">Add-Ons</button><button onclick="goPage('experiences')">Experiences</button><button onclick="goPage('faq')">FAQ</button></div>
+<div class="browse-filter-bar">
+<input id="browseKeyword" oninput="applyBrowseFilters()" placeholder="Search add-ons"/>
+<select id="browseType" onchange="applyBrowseFilters()">
+<option value="all">All types</option>
+<option value="vbucks">V-Bucks</option>
+<option value="skin">Skins</option>
+<option value="pickaxe">Pickaxes</option>
+</select>
+<select id="browsePrice" onchange="applyBrowseFilters()">
+<option value="all">All prices</option>
+<option value="under25">Under $25 USD</option>
+<option value="under100">Under $100 USD</option>
+<option value="under200">Under $200 USD</option>
+<option value="200plus">$200+ USD</option>
+</select>
+<button onclick="resetBrowseFilters()">Reset</button>
+</div>
+<section class="item-section"><h2 class="section-title">V-Bucks</h2><div class="grid" id="browseVbucks"></div></section>
+<section class="item-section"><h2 class="section-title">Skins</h2><div class="grid" id="browseSkins"></div></section>
+<section class="item-section"><h2 class="section-title">Pickaxes</h2><div class="grid" id="browsePickaxes"></div></section>
+</main>
+<main class="page shell" id="newsPage">
+<h1 class="listing-title">Fortnite<br/>News</h1>
+<div class="tabs">
+<button onclick="goPage('discover')">Overview</button>
+<button onclick="goPage('browse')">Add-Ons</button>
+<button onclick="goPage('experiences')">Experiences</button>
+<button class="active">News</button>
+<button onclick="goPage('faq')">FAQ</button>
+</div>
+<section class="epic-news-hero">
+<div>
+<div class="eyebrow">This week in Fortnite</div>
+<h2>New islands, modes, and item updates</h2>
+<p>Discover Fortnite experiences, creator-made islands, and add-ons that can be added to your locker or gifted through checkout.</p>
+<button class="side-buy" onclick="goPage('browse')" style="width:auto;padding:0 24px;margin-top:12px">Browse Add-Ons</button>
+</div>
+</section>
+<div class="info-grid">
+<article class="info-card"><span>Update</span><h3>Battle Royale refresh</h3><p>Explore refreshed points of interest, new gameplay updates, and seasonal content across the island.</p></article>
+<article class="info-card"><span>Discover</span><h3>Creator-made islands</h3><p>Find new player-made experiences across the Fortnite ecosystem.</p></article>
+<article class="info-card"><span>Shop</span><h3>Add-ons and gifts</h3><p>Add eligible items to your cart, review your order, then send everything to one recipient during checkout.</p></article>
+</div>
+<section class="store-note">
+<h3>Featured add-ons</h3>
+<p>Browse V-Bucks, skins, and pickaxes from the Add-Ons page. Filters help narrow by price, type, and platform.</p>
+</section>
+</main>
+<main class="page shell" id="experiencesPage">
+<h1 class="listing-title">Fortnite<br/>Experiences</h1>
+<div class="tabs">
+<button onclick="goPage('discover')">Overview</button>
+<button onclick="goPage('browse')">Add-Ons</button>
+<button class="active">Experiences</button>
+<button onclick="goPage('news')">News</button>
+<button onclick="goPage('faq')">FAQ</button>
+</div>
+<p class="section-subtitle" style="max-width:720px;margin-bottom:24px">Fortnite includes Battle Royale-style modes, LEGO Fortnite, Fortnite Festival, Rocket Racing, and creator-made islands inside the wider Fortnite ecosystem.</p>
+<section class="experience-hero-strip">
+<div><span>Featured</span><h2>Play your way across Fortnite</h2><p>Jump between competitive, creative, racing, rhythm, and survival-style experiences from one launcher.</p></div>
+</section>
+<div class="experience-grid">
+<article class="experience-card"><div class="experience-art br"></div><h3>Battle Royale</h3><p>Drop in, loot up, and be the last player standing.</p><button onclick="goPage('browse')">View Add-Ons</button></article>
+<article class="experience-card"><div class="experience-art og"></div><h3>Fortnite OG</h3><p>Play a nostalgic Fortnite experience with familiar pacing and locations.</p><button onclick="goPage('browse')">View Add-Ons</button></article>
+<article class="experience-card"><div class="experience-art reload"></div><h3>Reload</h3><p>Fast squad action with a sharper loop and quick returns.</p><button onclick="goPage('browse')">View Add-Ons</button></article>
+<article class="experience-card"><div class="experience-art lego"></div><h3>LEGO Fortnite</h3><p>Build, survive, explore, and create in a LEGO-style world.</p><button onclick="goPage('browse')">View Add-Ons</button></article>
+<article class="experience-card"><div class="experience-art festival"></div><h3>Fortnite Festival</h3><p>Play music-focused stages and rhythm-based experiences.</p><button onclick="goPage('browse')">View Add-Ons</button></article>
+<article class="experience-card"><div class="experience-art rocket"></div><h3>Rocket Racing</h3><p>Race across tracks with arcade-style speed and competition.</p><button onclick="goPage('browse')">View Add-Ons</button></article>
+</div>
+</main>
+<main class="page shell" id="faqPage">
+<h1 class="listing-title">Fortnite<br/>FAQ</h1>
+<div class="tabs">
+<button onclick="goPage('discover')">Overview</button>
+<button onclick="goPage('browse')">Add-Ons</button>
+<button onclick="goPage('experiences')">Experiences</button>
+<button onclick="goPage('news')">News</button>
+<button class="active">FAQ</button>
+</div>
+<section class="faq-list">
+<article class="faq-item"><h3>What purchases are offered?</h3><p>Fortnite offers V-Bucks and bundles that can include cosmetic items and sometimes questlines or extra rewards.</p></article>
+<article class="faq-item"><h3>What can V-Bucks be used for?</h3><p>V-Bucks can be used for cosmetic items in the Item Shop and upgrades for a season Battle Pass.</p></article>
+<article class="faq-item"><h3>How do I add multiple gifts?</h3><p>Add each item once to your cart. During checkout, the full cart is sent to the recipient you enter.</p></article>
+<article class="faq-item"><h3>How does recipient lookup work?</h3><p>Type a Fortnite username during checkout. The recipient card loads first, then unlocks the gift button after the lookup finishes.</p></article>
+<article class="faq-item"><h3>How does checkout work?</h3><p>Choose an item, recipient, and payment method, then follow the checkout steps.</p></article>
+</section>
+</main>
+<main class="page shell" id="wishlistPage">
+<h1 class="listing-title">Wishlist</h1>
+<div class="empty-state" id="wishlistContent">Your wishlist is empty.</div>
+</main>
+<main class="page shell" id="cartPage">
+<h1 class="listing-title">Cart</h1>
+<div class="empty-state" id="cartContent">Your cart is empty.</div>
+</main>
+<main class="detail" id="detail">
+<h1 id="detailTitle">Ikonik</h1>
+<div class="rating-line"><span class="stars">★★★★☆ 4.3</span><span>Competitive Players</span><span>Quickly Understood Controls</span></div>
+<div class="tabs"><button class="active">Overview</button><button onclick="goPage('browse')">Add-Ons</button><button onclick="goPage('experiences')">Experiences</button><button onclick="goPage('faq')">FAQ</button></div>
+<div class="detail-layout">
+<section>
+<div class="media-main" id="mediaBox"><img alt="" decoding="async" id="detailHero" loading="lazy" src="./assets/ikonik.webp"/></div>
+<div class="thumb-strip" id="detailGallery">
+<button class="mini-thumb active" onclick="setDetailImage(current.hero||current.img,this)"><img alt="" decoding="async" id="mini1" loading="lazy" src="./assets/ikonik-render.webp"/></button>
+<button class="mini-thumb blank-thumb" onclick="setDetailImage(current.hero||current.img,this)"><span>View</span></button>
+<button class="mini-thumb blank-thumb" onclick="setDetailImage(current.hero||current.img,this)"><span>Details</span></button>
+<button class="mini-thumb blank-thumb" onclick="setDetailImage(current.hero||current.img,this)"><span>Bundle</span></button>
+</div>
+<p class="detail-desc" id="detailDesc"></p>
+<div class="tag-section">
+<div><div class="tag-title">Genres</div><span class="tag">Action</span><span class="tag">Shooter</span></div>
+<div><div class="tag-title">Features</div><span class="tag">Co-op</span><span class="tag">Competitive</span><span class="tag">Multiplayer</span><span class="tag">Single Player</span></div>
+</div>
+<div class="info-banner"><span>Stay up to date with what’s happening in Fortnite this week, including new experiences and updates.</span><button class="side-secondary" onclick="goPage('news')" style="width:auto;margin:0;padding:0 16px">Discover Now</button></div>
+</section>
+<aside class="side">
+<div class="side-logo" id="sideLogo"><img alt="" decoding="async" id="sideImg" loading="lazy" src="./assets/ikonik.webp"/></div>
+<div class="rating-card"><img alt="" decoding="async" loading="lazy" src="./assets/pegi.png"/><b>PARENTAL GUIDANCE RECOMMENDED</b><br/>Users Interact, In-Game Purchases<br/>(Includes Random Items)</div>
+<span class="category" id="detailCategory">Add-On</span>
+<div class="side-price" id="detailPrice">$250.00</div>
+<button class="side-buy" onclick="openCheckout([current])">Buy Now</button>
+<button class="side-secondary add-cart-side" onclick="addToCart(current)">Add to Cart</button>
+<button class="side-secondary wishlist-btn" onclick="toggleWishlist()"><img alt="" class="wishlist-heart-icon side-heart" decoding="async" loading="lazy" src="./assets/wishlist-heart-clean.png"/>Wishlist</button>
+<div class="spec">
+<div>Epic Rewards <b>Earn 20% Back</b></div>
+<div>Refund Type <b>Non-Refundable</b></div>
+<div>Developer <b>Epic Games</b></div>
+<div>Publisher <b>Epic Games</b></div>
+<div>Platform <b><span class="windows-css-icon"></span></b></div>
+</div>
+<button class="back-btn" onclick="goPage('browse')">← Back</button>
+</aside>
+</div>
+</main>
+<div class="overlay" id="payOverlay">
+<section aria-labelledby="epicCheckoutTitle" aria-modal="true" class="epic-checkout-dialog" data-step="platform" role="dialog">
+<header class="epic-checkout-head">
+<img alt="" decoding="async" src="./assets/epic-logo.png"/>
+<div class="epic-head-copy"><strong id="epicCheckoutTitle">Fortnite</strong><span id="epicStepLabel">Gift Checkout</span></div>
+<button aria-label="Close checkout" class="epic-close" onclick="closeCheckout()" type="button">×</button>
+</header>
+<nav aria-label="Checkout progress" class="epic-progress">
+<div class="epic-progress-step active" data-epic-progress="platform"><i>1</i><span>Platform</span></div>
+<div class="epic-progress-step" data-epic-progress="recipient"><i>2</i><span>Recipient</span></div>
+<div class="epic-progress-step" data-epic-progress="review"><i>3</i><span>Review</span></div>
+</nav>
+<div class="epic-checkout-viewport">
+<section class="epic-slide active" data-checkout-slide="platform">
+<div class="epic-layout">
+<main class="epic-main">
+<div class="epic-kicker">Build your gift</div>
+<h3 class="epic-flow-title">Choose a platform.</h3>
+<p class="epic-flow-copy">Select the platform used by the Fortnite player receiving this gift.</p>
+<div class="epic-section-title">Platform</div>
+<div aria-label="Recipient platform" class="epic-platform-grid" role="group">
+<button class="epic-platform-option" data-gift-platform="epic" onclick="selectGiftPlatform('epic',this)" type="button"><img alt="" src="../fc27/assets/icons/windows-pc-white.svg"/><span>PC / Epic</span></button>
+<button class="epic-platform-option" data-gift-platform="playstation" onclick="selectGiftPlatform('playstation',this)" type="button"><img alt="" src="../fc27/assets/icons/playstation-white.svg"/><span>PlayStation</span></button>
+<button class="epic-platform-option" data-gift-platform="xbox" onclick="selectGiftPlatform('xbox',this)" type="button"><img alt="" src="../fc27/assets/icons/xbox-white.svg"/><span>Xbox</span></button>
+</div>
+<p class="epic-small-note">The selected platform controls the matching account and avatar shown during lookup.</p>
+</main>
+<aside aria-label="Gift summary" class="epic-side">
+<div class="epic-product-list" id="checkoutItems"></div>
+<div class="epic-side-summary">
+<div class="epic-side-row"><span>Platform</span><strong id="checkoutPlatformName">Not selected</strong></div>
+<div class="epic-side-row"><span>Delivery</span><strong>Digital gift</strong></div>
+<div class="epic-side-row total"><span>Total</span><strong id="checkoutTotalSide">$0.00</strong></div>
+</div>
+<div class="epic-account-chip"><div class="player-avatar" id="payAvatar">T</div><div><div class="player-name" id="payAccountName">tiktok lachbtw</div><div class="player-sub">Epic account · Online</div></div></div>
+</aside>
+</div>
+</section>
+<section class="epic-slide" data-checkout-slide="recipient">
+<div class="epic-kicker">Find user</div>
+<h3>Find the recipient.</h3>
+<p class="epic-slide-copy">Search for the Fortnite display name to send this gift to.</p>
+<div class="gift-section">
+<label class="section-label" for="giftInput">Fortnite username</label>
+<input autocomplete="off" class="gift-input" id="giftInput" oninput="updateRecipientPreview()" placeholder="Enter Fortnite username" value=""/>
+<div class="input-hint">We will match the account before continuing.</div>
+</div>
+<div class="recipient-preview" id="recipientPreview">
+<div class="recipient-avatar" id="recipientAvatar">?</div>
+<div><div class="recipient-name" id="recipientName">Enter recipient</div><div class="recipient-sub" id="recipientSub">Type a Fortnite username to continue</div></div>
+</div>
+<div class="lookup-status" id="lookupStatus">Waiting for username</div>
+</section>
+<section class="epic-slide" data-checkout-slide="review">
+<div class="epic-kicker">Confirm gift</div>
+<h3>Review your order.</h3>
+<p class="epic-slide-copy">Confirm the item, recipient, platform, and saved payment method.</p>
+<div class="epic-review-platform"><img alt="" id="reviewPlatformIcon" src="../fc27/assets/icons/windows-pc-white.svg"/><div><span>Delivering on</span><strong id="reviewPlatformName">PC / Epic</strong></div></div>
+<div class="epic-review-items" id="reviewItems"></div>
+<div class="pay-section">
+<div class="section-label">Payment method</div>
+<div class="method-list"><div class="method"><span class="visa-text-badge">VISA</span><span>Visa Debit<br/><small id="cardLine">•••• 4827 · Thomas Smith</small></span><span class="radio"></span></div></div>
+<div class="reward-row" id="rewardRow">Get $50.00 in Epic Rewards.</div>
+</div>
+<div class="summary-lines">
+<div class="sum-line"><span>Recipient</span><b id="deliveryName">Not selected</b></div>
+<div class="sum-line"><span>Subtotal</span><b id="subtotal">$250.00</b></div>
+<div class="sum-line"><span>VAT included</span><b id="vat">$41.67</b></div>
+<div class="sum-line total"><span>Total</span><b id="total">$250.00</b></div>
+</div>
+</section>
+</div>
+<footer class="epic-checkout-actions">
+<div class="epic-action-row"><button class="epic-back" id="epicBackButton" onclick="checkoutBack()" type="button">Back</button><button class="pay-btn" disabled="" id="payButton" onclick="advanceCheckout()" type="button">Choose a platform</button></div>
+<p class="fine">Interactive visual preview · no charge is made.</p>
+</footer>
+</section>
+</div>
+<div class="overlay" id="processingOverlay">
+<section class="processing-card">
+<div class="spin"></div>
+<div class="proc-title" id="procTitle">Processing order...</div>
+<div class="proc-sub" id="procSub">Verifying saved payment method</div>
+<div class="proc-track"><div class="proc-fill" id="procFill"></div></div>
+</section>
+</div>
+<div class="overlay" id="successOverlay">
+<section class="success-card">
+<div class="success-top"><div class="check-wrap">✓</div><div class="success-title">Order complete</div><div class="success-id" id="orderNumber">Order #A9K4-72QX-18P6</div><div class="success-mini" id="successMini">Item was sent successfully</div><div class="receipt-note" id="receiptNote">We sent an email to you with your receipt.</div></div>
+<div class="success-body">
+<div class="success-row"><span>Item</span><b id="sItem">Ikonik</b></div>
+<div class="success-row"><span>Sent to</span><b id="sPlayer">Not selected</b></div>
+<div class="success-row"><span>Platform</span><b id="sPlatform">Not selected</b></div>
+<div class="success-row"><span>Amount</span><b id="sAmt">250.00 USD</b></div>
+<div class="success-row"><span>Payment</span><b>Visa •••• 4827</b></div>
+<div class="success-row"><span>Date</span><b id="sDate"></b></div>
+</div>
+<div class="success-actions"><button class="return" onclick="returnStore()">Return to store</button></div>
+</section>
+</div>
+<div class="overlay" id="settingsOverlay">
+<section class="modal-card">
+<div class="modal-head"><img alt="" decoding="async" loading="lazy" src="./assets/epic-logo.png"/><h2>Settings</h2><button class="x" onclick="closeSettings()">×</button></div>
+<div class="settings-body">
+<div class="field"><label>Sender account username</label><input id="settingsAccount" value="tiktok lachbtw"/></div>
+<div class="field"><label>Saved card name</label><input id="settingsCardName" value="Thomas Smith"/></div>
+<div class="field"><label>Currency</label>
+<select id="settingsCurrency">
+<option value="USD">USD — US Dollar</option>
+<option value="NZD">NZD — New Zealand Dollar</option>
+<option value="AUD">AUD — Australian Dollar</option>
+<option value="GBP">GBP — British Pound</option>
+<option value="EUR">EUR — Euro</option>
+<option value="CAD">CAD — Canadian Dollar</option>
+<option value="JPY">JPY — Japanese Yen</option>
+<option value="CNY">CNY — Chinese Yuan</option>
+<option value="INR">INR — Indian Rupee</option>
+<option value="BRL">BRL — Brazilian Real</option>
+</select>
+</div>
+<button class="save-settings" onclick="saveSettings()">Save changes</button>
+</div>
+</section>
+</div>
+<div class="toast" id="toast">Updated</div>
+<div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCartDrawer()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+<div class="drawer-head">
+<div>
+<h2>Cart</h2>
+<p id="drawerSub">No items added</p>
+</div>
+<button class="drawer-close" onclick="closeCartDrawer()">×</button>
+</div>
+<div class="drawer-items" id="drawerItems"></div>
+<div class="drawer-summary">
+<div><span>Subtotal</span><b id="drawerSubtotal">$0.00</b></div>
+<div><span>VAT included</span><b id="drawerVat">$0.00</b></div>
+<div class="drawer-total"><span>Total</span><b id="drawerTotal">$0.00</b></div>
+<button id="drawerCheckout" onclick="checkoutDrawerCart()">Gift Cart</button>
+<button class="drawer-view" onclick="closeCartDrawer();goPage('cart')">View full cart</button>
+</div>
+</aside>
+
+
+
+
+
+
+

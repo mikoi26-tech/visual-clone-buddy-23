@@ -1,0 +1,91 @@
+
+:root{--rbx-blue:#335fff;--nav-h:82px;--kbd-h:302px}
+html,body{overscroll-behavior:none!important}
+body{font-family:"Builder Sans","Inter",-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
+.device-stage{position:relative;overflow:hidden;overscroll-behavior:none}
+.iphone-screen{display:flex!important;flex-direction:column!important;isolation:isolate}
+.app-root{flex:1 1 auto!important;min-height:0!important;padding-bottom:18px!important;overscroll-behavior-y:none!important;scroll-behavior:smooth!important;position:relative!important}
+.app-root::after{content:"";display:block;height:6px}
+.bottom-nav{position:relative!important;inset:auto!important;left:auto!important;bottom:auto!important;transform:none!important;flex:0 0 var(--nav-h)!important;width:100%!important;max-width:none!important;height:var(--nav-h)!important;padding:8px 18px 25px!important;z-index:30000!important;box-shadow:0 -1px 0 rgba(0,0,0,.07)!important;will-change:auto!important;contain:layout paint!important}
+.bottom-nav .nav-item{min-width:58px;user-select:none}
+.bottom-nav .nav-item svg{width:25px!important;height:25px!important}
+.iphone-screen.transaction-open .bottom-nav,.iphone-screen.keyboard-open .bottom-nav{display:none!important}
+.continue-section{padding-bottom:24px!important}
+.continue-rail{padding-bottom:2px!important}
+.home-indicator{z-index:50000!important;pointer-events:none!important}
+
+/* The project notice stays outside the phone frame. */
+.concept-notice{display:block!important;position:fixed!important;top:16px!important;left:16px!important;bottom:auto!important;transform:none!important;z-index:2147483000!important;width:auto!important;max-width:310px!important;padding:8px 11px!important;border-radius:9px!important;background:rgba(20,20,22,.88)!important;color:#fff!important;border:1px solid rgba(255,255,255,.13)!important;font-size:11px!important;font-weight:650!important;line-height:1.25!important;letter-spacing:.01em!important;box-shadow:0 8px 24px rgba(0,0,0,.18)!important;white-space:normal!important;pointer-events:none!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.iphone-shell.transaction-open>.concept-notice{display:block!important}
+
+/* More stable, reference-sized status bar assets. */
+.ios-status-bar{grid-template-columns:1fr 130px 1fr!important;padding-left:30px!important;padding-right:28px!important}
+.status-left{font-size:16.5px!important;font-weight:700!important;letter-spacing:-.42px!important;gap:6px!important;padding-left:1px!important}
+.status-right{gap:6px!important;padding-right:0!important;transform:translateY(-.5px)}
+.status-signal{width:19px!important;height:18px!important;object-fit:contain!important}
+.status-wifi{width:21px!important;height:17px!important;object-fit:contain!important}
+.status-battery-wrap{width:29px!important;height:15px!important;flex-basis:29px!important}
+.status-battery{width:29px!important;height:15px!important;object-fit:contain!important}
+.battery-percent{display:none!important}
+.dynamic-island{width:129px!important;height:35px!important;border-radius:21px!important;background:#000!important}
+.focus-moon{width:14px!important;height:14px!important}
+
+/* Roblox home typography and spacing. */
+.topbar{flex:0 0 62px!important;height:62px!important;padding:7px 20px!important}
+.roblox-header-logo{width:108px!important}
+.profile{padding:4px 20px 12px!important;min-height:50px!important}
+.profile .pfp{width:42px!important;height:42px!important}
+.username{font-size:18px!important;font-weight:720!important}
+.friends-scroll{padding:8px 20px 23px!important}
+.section-title{font-size:21px!important;font-weight:760!important;line-height:1.15!important}
+.game-grid{gap:16px 12px!important}
+.game-name{font-size:13px!important;font-weight:650!important;line-height:1.18!important;min-height:31px!important;margin:0!important}
+.game-rating{display:flex!important;align-items:center!important;gap:4px!important;white-space:nowrap!important;font-size:11.5px!important;line-height:15px!important;margin-top:3px!important;color:#64656a!important}
+.rating-thumb{display:block;width:13px;height:13px;fill:currentColor;flex:0 0 13px;transform:translateY(-.2px)}
+.thumbs-up{display:none!important}
+.game-thumb{box-shadow:0 0 0 .5px rgba(0,0,0,.16)!important}
+.game-card:focus-visible{outline:3px solid rgba(51,95,255,.3);outline-offset:4px;border-radius:12px}
+
+/* Search results and API states. */
+#srDropdown{max-height:230px;overflow:auto;border:1px solid rgba(0,0,0,.08)!important;box-shadow:0 12px 35px rgba(0,0,0,.17)!important}
+.api-user-row{display:flex;align-items:center;gap:11px;padding:11px 12px;background:#fff;cursor:pointer;border:0;width:100%;text-align:left;color:#1b1b1d}
+.api-user-row:active{background:#f0f0f3}
+.api-user-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#eeeef1;flex:0 0 44px}
+.api-user-copy{min-width:0;flex:1}
+.api-display-name{font-size:15px;font-weight:720;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.api-username{font-size:12.5px;color:#77787e;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.api-state-row{padding:15px 14px;font-size:13px;color:#696a70;text-align:center;background:#fff}
+.api-spinner{display:inline-block;width:15px;height:15px;border:2px solid #d3d4d8;border-top-color:#55565b;border-radius:50%;animation:apiSpin .75s linear infinite;vertical-align:-3px;margin-right:7px}
+@keyframes apiSpin{to{transform:rotate(360deg)}}
+
+/* iOS-style in-phone keyboard. */
+.ios-sim-keyboard{position:absolute;left:0;right:0;bottom:0;height:var(--kbd-h);z-index:120000;background:rgba(205,208,214,.98);padding:8px 6px calc(8px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .28s cubic-bezier(.22,.8,.25,1);box-shadow:0 -1px 0 rgba(0,0,0,.14);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);box-sizing:border-box;user-select:none;touch-action:manipulation}
+.ios-sim-keyboard.visible{transform:translateY(0)}
+.keyboard-topline{height:28px;display:flex;align-items:center;justify-content:flex-end;padding:0 8px 4px}
+.keyboard-dismiss{border:0;background:transparent;width:34px;height:27px;border-radius:8px;font-size:21px;line-height:1;color:#44464b;display:flex;align-items:center;justify-content:center}
+.keyboard-row{display:flex;justify-content:center;gap:6px;margin-bottom:10px}
+.keyboard-row.row-two{padding:0 17px}
+.keyboard-key{height:43px;min-width:32px;flex:1;max-width:39px;border:0;border-radius:6px;background:#fff;color:#111;font-size:20px;font-weight:450;box-shadow:0 1px 0 rgba(0,0,0,.34),0 1px 2px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;transition:transform .04s ease,background .04s ease;position:relative}
+.keyboard-key.active,.keyboard-key:active{transform:translateY(1px);background:#d9dade;box-shadow:none}
+.keyboard-key.wide{max-width:none;flex:1.45;background:#aeb2ba;font-size:15px;font-weight:650}
+.keyboard-key.space{max-width:none;flex:5;background:#fff;font-size:15px}
+.keyboard-key.return{max-width:none;flex:2.2;background:#aeb2ba;font-size:14px;font-weight:650}
+.keyboard-key.shift-on{background:#fff}
+.keyboard-bottom{display:flex;gap:7px;padding:0 2px}
+.keyboard-globe{max-width:none!important;flex:1.2!important;font-size:18px!important}
+.iphone-screen.keyboard-open #sendRobuxPanel,.iphone-screen.keyboard-open #cpPanel,.iphone-screen.keyboard-open #addFriendPanel{max-height:calc(100% - var(--kbd-h))!important;margin-bottom:var(--kbd-h)!important;border-radius:24px 24px 0 0!important}
+.iphone-screen.keyboard-open #sendRobuxModal,.iphone-screen.keyboard-open #cpSheet{align-items:flex-end!important}
+.iphone-screen.keyboard-open .home-indicator{opacity:0!important}
+
+/* Clean up purchase confirmation presentation. */
+#successPopup>div{max-width:300px!important;padding:25px 23px 20px!important}
+#successPopup [style*="font-size:17px"]{font-weight:720!important;letter-spacing:-.25px}
+#appStoreModal>div{box-shadow:0 -20px 60px rgba(0,0,0,.22)!important}
+
+@media(max-width:520px){
+ .device-stage{padding-top:42px!important}
+ .concept-notice{top:8px!important;left:8px!important;right:8px!important;max-width:none!important;text-align:center!important}
+ .iphone-shell{height:calc(100% - 42px)!important}
+ .ios-status-bar{padding-left:max(28px,env(safe-area-inset-left))!important;padding-right:max(26px,env(safe-area-inset-right))!important}
+}
+@media(max-height:760px){:root{--kbd-h:270px}.keyboard-key{height:38px}.keyboard-row{margin-bottom:7px}.keyboard-topline{height:22px}}

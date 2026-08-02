@@ -1,0 +1,46 @@
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body,#root{height:100%;background:#000;overflow:hidden}
+body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{display:none}
+*{scrollbar-width:none;-ms-overflow-style:none}
+input{-webkit-user-select:text;user-select:text}
+input::placeholder{color:#555}
+
+/* only the newest digit pops */
+@keyframes newDigit{
+  0%  {transform:scale(.55) translateY(12px);opacity:0}
+  55% {transform:scale(1.12) translateY(-2px);opacity:1}
+  100%{transform:scale(1)   translateY(0);   opacity:1}
+}
+/* delete: digit shrinks away */
+@keyframes delDigit{
+  0%  {transform:scale(1);opacity:1}
+  100%{transform:scale(.4) translateY(8px);opacity:0}
+}
+/* sheet slides up */
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+/* rows fade+slide in */
+@keyframes rowIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* fade scale */
+@keyframes fIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+/* checkmark */
+@keyframes cb{0%{transform:scale(0);opacity:0}60%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:1}}
+/* notification */
+@keyframes nd{0%{transform:translateY(-120px);opacity:0}8%{opacity:1;transform:translateY(6px)}16%{transform:translateY(-2px)}22%{transform:translateY(0)}80%{transform:translateY(0);opacity:1}92%{opacity:1}100%{transform:translateY(-120px);opacity:0}}
+/* spinner */
+@keyframes spin{to{transform:rotate(360deg)}}
+/* nav button pulse */
+@keyframes pg{0%,100%{box-shadow:0 0 0 0 rgba(0,214,50,.5)}60%{box-shadow:0 0 0 12px rgba(0,214,50,0)}}
+/* subtle tap scale */
+@keyframes tap{0%{transform:scale(1)}50%{transform:scale(.94)}100%{transform:scale(1)}}
+/* keyboard caret blink */
+@keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+/* key press pop */
+@keyframes keypop{0%{transform:scale(1)}40%{transform:scale(.92)}100%{transform:scale(1)}}
+
+.fin{animation:fIn .28s cubic-bezier(.2,.8,.2,1) both}
+.cb{animation:cb .42s cubic-bezier(.2,.8,.2,1) both}
+.nd{animation:nd 3.8s cubic-bezier(.2,.8,.2,1) both}
+.pg{animation:pg 2s ease infinite}
+.row-in{animation:rowIn .3s cubic-bezier(.2,.8,.2,1) both}

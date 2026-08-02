@@ -1,0 +1,7 @@
+
+.fc-checkout[data-view="success"] .fc-success-compact{width:100%;max-width:470px;margin:0 auto;text-align:center}
+.fc-success-compact .fc-success-time{margin:0 auto 12px!important}
+.fc-success-email-copy{max-width:430px;margin:0 auto 19px!important;color:#a4abb1!important;font:400 13px/1.55 electronicartstext,Arial,sans-serif;text-align:center;overflow-wrap:anywhere}
+.fc-success-email-copy strong{color:var(--checkout-green);font-weight:700}
+.fc-success-compact .fc-success-receipt{width:100%;margin-left:auto!important;margin-right:auto!important}
+.fc-success-compact .fc-success-action{width:100%!important;margin-left:auto!important;margin-right:auto!important}

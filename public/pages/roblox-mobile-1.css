@@ -1,0 +1,167 @@
+
+:root{--ink:#19191b;--muted:#65666b;--line:#e7e7ea;--surface:#fff;--soft:#f3f3f5;--blue:#335dff;--safe-bottom:22px}
+html,body{width:100%;height:100%;overflow:hidden}
+*{-webkit-tap-highlight-color:transparent}
+body{max-width:none!important;min-height:100%!important;margin:0!important;padding:0!important;background:radial-gradient(circle at 50% 20%,#fff 0,#eef0f4 38%,#d9dde4 100%)!important;color:var(--ink)!important;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif!important;display:flex;align-items:center;justify-content:center}
+button,input{font:inherit}
+.device-stage{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box}
+.iphone-shell{position:relative;width:min(430px,100%);height:min(900px,100%);padding:7px;background:linear-gradient(145deg,#222 0,#020202 35%,#2b2b2c 70%,#080808 100%);border-radius:62px;box-shadow:0 30px 65px rgba(0,0,0,.28),0 7px 20px rgba(0,0,0,.2),inset 0 0 0 1px rgba(255,255,255,.3);box-sizing:border-box}
+.iphone-screen{height:100%;position:relative;display:flex;flex-direction:column;overflow:hidden;border-radius:55px;background:#fff;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.ios-status-bar{position:relative;flex:0 0 55px;height:55px;background:#fff;color:#050505;display:grid;grid-template-columns:1fr 142px 1fr;align-items:center;padding:5px 30px 0;z-index:100001;box-sizing:border-box;font-weight:700;letter-spacing:-.25px}
+.status-left{display:flex;align-items:center;gap:7px;font-size:17px;white-space:nowrap;padding-left:7px}
+.focus-moon{display:block;width:15px;height:15px;border-radius:50%;background:#050505;position:relative;transform:rotate(-12deg)}
+.focus-moon:after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:#fff;left:5px;top:-2px}
+.dynamic-island{width:134px;height:36px;border-radius:22px;background:#000;justify-self:center;position:relative;box-shadow:inset 0 0 0 .5px #151515}
+.island-camera{position:absolute;right:16px;top:13px;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#203557 0 20%,#080b11 42% 100%);opacity:.6}
+.status-right{justify-self:end;display:flex;align-items:center;gap:7px;padding-right:2px}
+.cell-dots{display:flex;align-items:center;gap:3px;margin-right:1px}
+.cell-dots i{display:block;width:4px;height:4px;border-radius:50%;background:#b8b8bd}
+.ios-wifi{width:24px;height:18px;fill:none;stroke:#050505;stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}
+.ios-battery{position:relative;width:30px;height:16px;border-radius:5px;background:#070707;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;line-height:1;letter-spacing:-.3px}
+.ios-battery:after{content:"";position:absolute;right:-3px;top:5px;width:2px;height:6px;border-radius:0 2px 2px 0;background:#8d8d92}
+.ios-battery i{display:none}
+.app-root{position:relative;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;background:#fff;padding-bottom:102px;scrollbar-width:none;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.app-root::-webkit-scrollbar,.friends-scroll::-webkit-scrollbar,.continue-rail::-webkit-scrollbar{display:none}
+.topbar{height:64px!important;position:sticky!important;top:0!important;z-index:120!important;padding:7px 18px!important;border:0!important;background:rgba(255,255,255,.96)!important;backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);box-sizing:border-box}
+.topbar-left{gap:14px!important;min-width:0}
+.roblox-menu-button{width:36px;height:36px;border:0;background:transparent;padding:2px;display:flex;align-items:center;justify-content:center;color:#1e1e20;cursor:pointer;border-radius:10px}
+.roblox-menu-button:active{background:#ececef;transform:scale(.94)}
+.roblox-menu-button svg{width:31px;height:26px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round}
+.roblox-menu-button svg circle{fill:currentColor;stroke:none}
+.roblox-header-logo{display:block;width:131px;height:auto;object-fit:contain}
+.lang-toggle{display:none!important}
+.topbar-right{gap:15px!important}
+.topbar-right svg,.topbar-right img{width:27px!important;height:27px!important;object-fit:contain;cursor:pointer;transition:transform .16s ease,opacity .16s ease}
+.topbar-right svg:active,.topbar-right img:active{transform:scale(.88);opacity:.6}
+.profile{padding:5px 20px 13px!important;gap:11px!important;background:#fff}
+.pfp{width:49px!important;height:49px!important;border-radius:50%!important;background:#eeeef2!important;box-shadow:0 0 0 1px rgba(0,0,0,.025);transition:transform .18s ease}
+.pfp:active{transform:scale(.94)}
+.username{font-size:18px!important;font-weight:700!important;letter-spacing:-.25px}
+.rplus{width:19px!important;height:19px!important}
+.friends-scroll{padding:9px 20px 24px!important;overflow-x:auto!important;scroll-snap-type:x proximity}
+.friends-inner{gap:16px!important}
+.friend{width:82px!important;scroll-snap-align:start}
+.friend-circle,.addf-circle{width:78px!important;height:78px!important;background:#eeeef4!important;margin-bottom:8px!important;box-shadow:0 0 0 1px rgba(0,0,0,.025);transition:transform .16s ease}
+.friend:active .friend-circle,.friend:active .addf-circle{transform:scale(.94)}
+.friend-name{font-size:12.5px!important;font-weight:600!important;color:#343438!important;letter-spacing:-.1px}
+.friend-game{font-size:10.5px!important;color:#7b7c82!important;margin-top:2px}
+.online{width:16px!important;height:16px!important;right:1px!important;bottom:1px!important;background:#2fd39b!important;border:3px solid #fff!important}
+.section{padding:0 20px 23px!important;display:block!important}
+.section-title{font-size:22px!important;font-weight:750!important;letter-spacing:-.65px!important;margin:0 0 13px!important}
+.game-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:17px 12px!important}
+.game-card{min-width:0;outline:none;cursor:pointer;transition:transform .16s cubic-bezier(.2,.8,.2,1),opacity .16s ease}
+.game-card:active,.game-card.keyboard-press{transform:scale(.975);opacity:.78}
+.game-thumb{width:100%!important;aspect-ratio:1.78/1!important;height:auto!important;border-radius:11px!important;overflow:hidden!important;margin:0 0 7px!important;background:#efeff1;box-shadow:0 0 0 .5px rgba(0,0,0,.12)}
+.game-thumb img{width:100%;height:100%;display:block;object-fit:cover}
+.game-name{font-size:13.5px!important;font-weight:650!important;line-height:1.2!important;letter-spacing:-.2px!important;margin:0 0 5px!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:32px}
+.game-rating{display:flex!important;align-items:center!important;gap:5px!important;font-size:12px!important;color:#65666b!important;font-weight:500}
+.thumbs-up{font-size:7px;display:inline-block;transform:rotate(-17deg);color:#65666b}
+.continue-section{padding-top:6px!important}
+.continue-heading{font-size:22px;font-weight:750;letter-spacing:-.55px;display:flex;align-items:center;gap:5px;margin-bottom:13px}
+.continue-heading svg{width:21px;height:21px;fill:none;stroke:#1d1d1f;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.continue-rail{display:flex;gap:11px;overflow-x:auto;padding:0 0 5px;scroll-snap-type:x mandatory}
+.continue-card{flex:0 0 118px;scroll-snap-align:start}
+.continue-card img{display:block;width:118px;height:82px;border-radius:10px;object-fit:cover;margin-bottom:6px;box-shadow:0 0 0 .5px rgba(0,0,0,.12)}
+.continue-card span{font-size:12px;font-weight:650;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bottom-nav{position:absolute!important;left:0!important;bottom:0!important;transform:none!important;width:100%!important;max-width:none!important;height:82px!important;padding:8px 15px 23px!important;background:rgba(255,255,255,.97)!important;backdrop-filter:saturate(190%) blur(20px);-webkit-backdrop-filter:saturate(190%) blur(20px);border-top:1px solid rgba(0,0,0,.08)!important;z-index:10000!important;box-sizing:border-box}
+.nav-item{flex:1;gap:2px!important;color:#74767d!important;font-size:10.5px!important;font-weight:500!important;transition:transform .14s ease,color .14s ease;user-select:none}
+.nav-item:active{transform:scale(.9)}
+.nav-item.active{color:#202124!important}
+.nav-item svg{width:26px!important;height:26px!important}
+.nav-pfp{width:27px!important;height:27px!important;border:0!important;background:#eee;border-radius:50%!important}
+.nav-pfp img{object-fit:cover}
+.home-indicator{position:absolute;left:50%;bottom:7px;z-index:10002;width:134px;height:5px;border-radius:4px;background:#080808;transform:translateX(-50%);pointer-events:none}
+.concept-notice{position:absolute;left:50%;bottom:91px;z-index:10003;transform:translateX(-50%);font-size:9px;font-weight:600;letter-spacing:.05px;color:#6f7076;background:rgba(255,255,255,.94);border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:4px 9px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+/* Original sheets and full-screen panels stay inside the phone, not the browser window. */
+#robuxModal,#appStoreModal,#loadingOverlay,#successPopup,#gjSheet,#cpSheet,#profileSheet,#sendRobuxModal{position:absolute!important;inset:0!important;max-width:none!important}
+#robuxModal{background:#f6f6f8!important;border-radius:0!important}
+#robuxModal>div:first-child{padding:13px 18px!important;background:#f6f6f8!important;border-bottom:1px solid rgba(0,0,0,.05)}
+#robuxModal h1{font-size:27px!important;letter-spacing:-.7px!important;margin:13px 0 18px!important}
+#robuxModal button{transition:transform .14s ease,filter .14s ease}
+#robuxModal button:active{transform:scale(.96);filter:brightness(.96)}
+#robuxModal [style*="background:#fff;border-radius:16px;overflow:hidden"]{border:1px solid #dedee3!important;border-radius:16px!important;background:#fff!important}
+#appStoreModal{align-items:flex-end!important}
+#appStoreModal .as-panel{width:100%!important;max-width:none!important;border-radius:24px 24px 0 0!important;padding-bottom:42px!important}
+#cpSheet,#profileSheet,#gjSheet,#sendRobuxModal{align-items:flex-end!important}
+#cpPanel,#profilePanel,#gjPanel,#sendRobuxPanel{width:100%!important;max-width:none!important;border-radius:25px 25px 0 0!important;box-shadow:0 -14px 44px rgba(0,0,0,.18)!important}
+#cpPanel{padding:19px 20px 32px!important}
+#cpInput,#srSearch{border:1px solid #d6d6dc!important;border-radius:13px!important;background:#f5f5f7!important;box-shadow:inset 0 0 0 1px transparent!important}
+#cpInput:focus,#srSearch:focus{background:#fff!important;border-color:#5574ff!important;box-shadow:0 0 0 3px rgba(64,96,232,.14)!important}
+#profilePanel{max-height:88%!important;overflow-y:auto!important}
+#profilePanel [style*="linear-gradient"]{background:linear-gradient(180deg,#d7d8dc 0%,#ececef 65%,#fff 100%)!important}
+#profilePanel button,#cpPanel button,#sendRobuxPanel button{transition:transform .14s ease,filter .14s ease}
+#profilePanel button:active,#cpPanel button:active,#sendRobuxPanel button:active{transform:scale(.97);filter:brightness(.97)}
+#sendRobuxPanel{background:#f4f4f7!important;max-height:92%!important}
+#successPopup>div{border-radius:18px!important;box-shadow:0 18px 60px rgba(0,0,0,.24)!important}
+@media (max-width:520px){
+  .device-stage{padding:0}
+  .iphone-shell{width:100%;height:100%;padding:0;border-radius:0;background:#000;box-shadow:none}
+  .iphone-screen{border-radius:0}
+  .ios-status-bar{padding-left:max(25px,env(safe-area-inset-left));padding-right:max(25px,env(safe-area-inset-right));padding-top:max(5px,env(safe-area-inset-top))}
+}
+@media (max-height:760px){
+  .iphone-shell{height:100%}
+  .ios-status-bar{flex-basis:50px;height:50px}
+  .dynamic-island{height:33px;width:124px}
+  .topbar{height:58px!important}
+  .friends-scroll{padding-bottom:18px!important}
+}
+
+/* Exact status asset + closer Roblox/iPhone proportions */
+.iphone-shell{width:min(430px,100%);height:min(932px,100%);padding:5px;border-radius:58px;background:linear-gradient(145deg,#2b2b2d 0%,#050506 30%,#19191a 72%,#030303 100%);box-shadow:0 32px 72px rgba(0,0,0,.32),0 8px 22px rgba(0,0,0,.22),inset 0 0 0 1px rgba(255,255,255,.42)}
+.iphone-screen{border-radius:53px}
+.ios-status-bar{flex-basis:54px;height:54px;grid-template-columns:1fr 132px 1fr;padding:3px 29px 0;background:#fff;transition:background-color .2s ease,color .2s ease}
+.status-left{font-size:17px;font-weight:650;gap:7px;padding-left:4px;letter-spacing:-.35px}
+.focus-moon{width:15px;height:15px}
+.dynamic-island{width:132px;height:36px;border-radius:22px}
+.status-right{gap:7px;padding-right:1px;height:25px}
+.status-glyph{display:block;object-fit:contain;filter:none;transition:filter .2s ease}
+.status-signal{width:20px;height:18px}
+.status-wifi{width:22px;height:18px}
+.status-battery-wrap{position:relative;display:block;width:29px;height:16px;flex:0 0 29px}
+.status-battery{position:absolute;inset:0;width:29px;height:16px}
+.battery-percent{display:none!important}
+.iphone-screen.transaction-open .ios-status-bar{background:#000;color:#fff}
+.iphone-screen.transaction-open .status-glyph{filter:invert(1)}
+.iphone-screen.transaction-open .focus-moon{background:#fff}
+.iphone-screen.transaction-open .focus-moon:after{background:#000}
+
+.iphone-screen.transaction-open .dynamic-island{box-shadow:none}
+.topbar{height:66px!important;padding:8px 20px!important}
+.roblox-header-logo{width:108px!important;height:auto!important}
+.roblox-menu-button{width:32px;height:34px;padding:1px}
+.roblox-menu-button svg{width:30px;height:25px}
+.topbar-left{gap:13px!important}
+.topbar-right{gap:16px!important}
+.topbar-right svg,.topbar-right img{width:26px!important;height:26px!important}
+.profile{padding:7px 20px 14px!important}
+.pfp{width:43px!important;height:43px!important}
+.username{font-size:18px!important}
+.friends-scroll{padding:9px 20px 25px!important}
+.section-title{font-size:21px!important}
+.game-thumb{border-radius:9px!important}
+.game-name{font-size:13px!important;line-height:1.23!important;letter-spacing:-.16px!important}
+.game-rating{font-size:11.5px!important;margin-top:5px!important}
+.bottom-nav{height:82px!important;padding:9px 18px 25px!important}
+.home-indicator{bottom:7px!important;width:134px!important;height:5px!important}
+.concept-notice{display:none!important;position:absolute!important;left:50%!important;bottom:89px!important;transform:translateX(-50%)!important;z-index:100050!important;width:max-content!important;max-width:calc(100% - 34px)!important;padding:5px 10px!important;border-radius:999px!important;background:rgba(32,32,34,.92)!important;color:#fff!important;border:0!important;font-size:10px!important;line-height:1.2!important;box-shadow:0 4px 16px rgba(0,0,0,.18)!important;white-space:nowrap!important}
+.iphone-shell.transaction-open > .concept-notice{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:none!important}
+#robuxModal,#appStoreModal,#loadingOverlay,#successPopup,#gjSheet,#cpSheet,#profileSheet,#sendRobuxModal{z-index:20000!important}
+#successPopup,#loadingOverlay{z-index:21000!important}
+#appStoreModal{z-index:20500!important}
+#robuxModal{padding-bottom:74px!important;background:#f4f4f7!important}
+#robuxModal>div:first-child{padding-top:12px!important}
+#robuxModal [style*="font-size:18px;font-weight:800"]{letter-spacing:-.35px}
+#cpPanel{border-radius:24px 24px 0 0!important;padding:18px 20px calc(22px + env(safe-area-inset-bottom))!important}
+#cpInput{background:#f4f4f6!important;border:1px solid #dedee3!important;border-radius:12px!important;padding:14px 15px!important}
+#cpConfirmBtn{background:#335dff!important}
+@media(max-width:520px){
+ .ios-status-bar{grid-template-columns:1fr 128px 1fr;padding-left:max(27px,env(safe-area-inset-left));padding-right:max(25px,env(safe-area-inset-right))}
+ .dynamic-island{width:128px}
+ .iphone-screen{border-radius:0}
+}
+
+/* Final reference calibration */
+.island-camera{display:none!important}
+.profile .pfp{width:35px!important;height:35px!important}
+.profile{min-height:50px!important}

@@ -1,0 +1,26 @@
+
+/* Final calibration against the supplied Roblox/iPhone references. */
+.profile .rplus{display:none!important}
+.profile .pfp,.nav-pfp,#cpSheetAvatar{background:#ececf1!important}
+.profile .pfp img,.nav-pfp img,#cpSheetAvatar{object-fit:cover!important;object-position:center 18%!important}
+#cpSheetBodyAvatar{object-fit:contain!important;object-position:center bottom!important;max-height:315px!important;filter:drop-shadow(0 7px 10px rgba(0,0,0,.12))}
+.topbar-right{position:relative}
+.topbar-right>svg,.topbar-right>img,.notification-wrap{cursor:pointer;transition:transform .12s ease,opacity .12s ease}
+.topbar-right>svg:active,.topbar-right>img:active,.notification-wrap:active{transform:scale(.9);opacity:.68}
+.notification-wrap{position:relative;width:27px;height:27px;display:flex;align-items:center;justify-content:center}
+.notification-wrap>img{width:26px!important;height:26px!important}
+.notification-badge{position:absolute;right:-6px;top:-8px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#f02828;color:#fff;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;line-height:1;box-sizing:border-box}
+.keyboard-symbol-layer{display:none}
+.keyboard-symbol-layer.visible{display:block}
+.keyboard-symbol-layer .keyboard-row.row-two{padding:0 135px}
+.added-friend-card .friend-circle img,.api-friend-row img,.api-user-avatar{object-position:center 18%!important}
+.friend-remove-mini{pointer-events:none}
+.added-friend-card:hover .friend-remove-mini,.added-friend-card:focus-within .friend-remove-mini{pointer-events:auto}
+.app-root{scrollbar-gutter:stable both-edges}
+.game-rating{min-height:15px}
+.game-rating .rating-label{display:inline-block;transform:translateY(.1px)}
+.bottom-nav{transform:translateZ(0)!important}
+.ios-status-bar,.topbar,.bottom-nav{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+@media (hover:none){
+  .friend-remove-mini{display:none!important}
+}

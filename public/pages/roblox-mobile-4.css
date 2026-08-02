@@ -1,0 +1,116 @@
+
+/* Final bug-fix pass: stable friend actions, reliable avatars and keyboard layering. */
+.added-friend-card{cursor:pointer!important;outline:none;position:relative}
+.added-friend-card:focus-visible .friend-circle{box-shadow:0 0 0 3px rgba(51,93,255,.25)!important}
+.friend-remove-mini{display:none!important}
+.added-friend-card .friend-circle{overflow:hidden!important;isolation:isolate}
+.added-friend-card .friend-circle img,.api-friend-row img,#friendActionAvatar{width:100%;height:100%;object-fit:cover!important;object-position:center center!important;display:block}
+.api-user-avatar{width:48px!important;height:48px!important;flex:0 0 48px!important;border-radius:50%!important;object-fit:cover!important;object-position:center center!important;display:block!important}
+.friend-action-sheet{display:none;position:absolute;inset:0;z-index:115000;align-items:flex-end;justify-content:center;background:transparent}
+.friend-action-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .24s ease;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}
+.friend-action-sheet.open .friend-action-backdrop{background:rgba(0,0,0,.38);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.friend-action-panel{position:relative;width:100%;max-height:82%;overflow:auto;background:#f4f4f7;border-radius:25px 25px 0 0;padding:10px 16px calc(17px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .3s cubic-bezier(.22,.8,.25,1);box-shadow:0 -18px 55px rgba(0,0,0,.18);box-sizing:border-box}
+.friend-action-sheet.open .friend-action-panel{transform:translateY(0)}
+.friend-action-handle{width:36px;height:4px;border-radius:99px;background:#c7c7cc;margin:0 auto 14px}
+.friend-action-person{display:flex;align-items:center;gap:12px;padding:2px 5px 15px}
+.friend-action-person img{width:52px!important;height:52px!important;flex:0 0 52px;border-radius:50%;background:#e8e8ed;box-shadow:0 0 0 .5px rgba(0,0,0,.08)}
+.friend-action-name{font-size:17px;font-weight:730;letter-spacing:-.3px}
+.friend-action-handle-text{font-size:13px;color:#77787d;margin-top:2px}
+.friend-action-options{display:flex;flex-direction:column;gap:1px;border-radius:15px;overflow:hidden}
+.friend-action-options.hidden{display:none}
+.friend-action-options button{min-height:52px;border:0;background:#fff;color:#1c1c1e;padding:0 17px;display:flex;align-items:center;justify-content:space-between;font-size:16px;text-align:left;cursor:pointer;border-bottom:1px solid #ececef}
+.friend-action-options button:active{background:#e9e9ed}
+.friend-action-options .friend-action-danger{color:#d70015;justify-content:center;font-weight:600}
+.friend-action-options .friend-action-cancel{margin-top:9px;border-radius:15px;border-bottom:0;justify-content:center;font-weight:700;color:#1c1c1e}
+.friend-chevron{font-size:27px;font-weight:300;color:#a3a3a8;line-height:1}
+.friend-nickname-view,.friend-confirm-view{display:none;background:#fff;border-radius:16px;padding:18px}
+.friend-nickname-view.visible,.friend-confirm-view.visible{display:block}
+.friend-nickname-title,.friend-confirm-title{font-size:19px;font-weight:750;letter-spacing:-.4px;text-align:center}
+.friend-nickname-copy,.friend-confirm-copy{font-size:13px;line-height:1.4;color:#707177;text-align:center;margin:7px auto 16px;max-width:300px}
+#friendNicknameInput{width:100%;height:48px;border:1px solid #d1d1d6;border-radius:13px;background:#f7f7f9;color:#111;padding:0 14px;font-size:16px;outline:none;box-sizing:border-box}
+#friendNicknameInput:focus{background:#fff;border-color:#335dff;box-shadow:0 0 0 3px rgba(51,93,255,.13)}
+.friend-nickname-buttons,.friend-confirm-buttons{display:flex;gap:10px;margin-top:15px}
+.friend-nickname-buttons button,.friend-confirm-buttons button{flex:1;height:46px;border:0;border-radius:13px;background:#e5e5ea;color:#1c1c1e;font-size:15px;font-weight:700}
+.friend-nickname-buttons .primary{background:#335dff;color:#fff}
+.friend-confirm-buttons .danger{background:#d70015;color:#fff}
+.iphone-screen.keyboard-open #friendActionPanel{max-height:calc(100% - var(--kbd-h))!important;margin-bottom:var(--kbd-h)!important}
+.ios-sim-keyboard{will-change:transform;transform:translate3d(0,105%,0)!important}
+.ios-sim-keyboard.visible{transform:translate3d(0,0,0)!important}
+#srSearch,#cpInput,#addFriendInput,#friendNicknameInput{touch-action:manipulation;caret-color:#335dff}
+#srDropdown{z-index:5}
+.send-receipt,#sendReceipt,.send-progress-overlay{display:none!important}
+
+/* Flat rounded phone frame: intentionally simple so the Roblox UI stays dominant. */
+:root{--ios-spring:cubic-bezier(.32,.72,0,1);--safe-top:54px;--safe-bottom:34px}
+html,body{min-height:100%;background:#151517}
+body{background:
+  radial-gradient(circle at 24% 18%,rgba(97,102,122,.24),transparent 34%),
+  radial-gradient(circle at 78% 82%,rgba(46,48,58,.42),transparent 38%),
+  linear-gradient(145deg,#202125 0%,#101114 52%,#24252a 100%)}
+.device-stage{padding:clamp(12px,2.2vh,24px)!important}
+.iphone-shell{
+  width:min(430px,calc(100vw - 24px),calc(46.0251dvh - 11.05px))!important;
+  height:auto!important;aspect-ratio:1320 / 2868!important;
+  transform:none!important;transform-origin:center!important;
+  padding:10px!important;border:2px solid #292b2e!important;border-radius:61px!important;
+  background:#050607!important;
+  box-shadow:0 0 0 3px #08090a,0 24px 58px rgba(0,0,0,.48),inset 0 0 0 1px #17191b!important;
+  transition:transform .5s var(--ios-spring),box-shadow .5s var(--ios-spring)
+}
+.iphone-shell:before,.iphone-shell:after{display:none!important}
+.iphone-screen{border-radius:49px!important;box-shadow:0 0 0 1px #0d0e10!important}
+.ios-status-bar{height:var(--safe-top)!important;flex-basis:var(--safe-top)!important;position:relative;z-index:130000!important}
+.ios-status-bar .status-left{grid-column:1}.ios-status-bar .status-right{grid-column:3}
+.dynamic-island{
+  position:absolute!important;left:50%;top:10px;transform:translateX(-50%);
+  width:126px!important;height:37px!important;border-radius:999px!important;
+  background:radial-gradient(120% 170% at 50% -45%,#202024 0%,#050506 54%,#000 100%)!important;
+  overflow:hidden;cursor:pointer;pointer-events:auto;
+  outline:none;
+  transition:width .55s var(--ios-spring),height .55s var(--ios-spring),border-radius .5s var(--ios-spring),box-shadow .35s ease!important;
+  box-shadow:0 5px 14px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.07),inset 0 0 0 1px rgba(255,255,255,.025)!important
+}
+.dynamic-island:focus-visible{box-shadow:0 5px 14px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.2)!important}
+.dynamic-island:before{content:"";position:absolute;inset:0 0 auto;height:48%;background:linear-gradient(rgba(255,255,255,.07),transparent);pointer-events:none}
+.dynamic-island[data-state="expanded"]{width:calc(100% - 32px)!important;height:104px!important;border-radius:42px!important;box-shadow:0 12px 28px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08)!important}
+.island-camera{display:block!important;position:absolute;right:17px;top:14px;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 32%,#263e66 0 18%,#090b10 43% 100%);opacity:.72;transition:opacity .18s ease}
+.dynamic-island[data-state="expanded"] .island-camera{opacity:0}
+.island-live{position:absolute;inset:0;display:flex;align-items:center;gap:12px;padding:15px 18px;color:#fff;opacity:0;transform:scale(.94);transition:opacity .18s ease .08s,transform .42s var(--ios-spring);pointer-events:none}
+.dynamic-island[data-state="expanded"] .island-live{opacity:1;transform:scale(1)}
+.island-app-icon{width:40px;height:40px;border-radius:11px;background:#fff;display:grid;place-items:center;flex:0 0 auto;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.island-app-icon img{width:32px;height:auto;display:block}
+.island-copy{min-width:0;display:flex;flex-direction:column;line-height:1.15}.island-copy strong{font-size:13px;font-weight:700}.island-copy span{font-size:11px;color:#a9abb2;margin-top:4px}
+.island-wave{margin-left:auto;display:flex;align-items:center;gap:2px;height:20px}.island-wave i{display:block;width:2px;border-radius:2px;background:#78d98b;animation:islandWave .9s ease-in-out infinite alternate}.island-wave i:nth-child(1){height:6px}.island-wave i:nth-child(2){height:15px;animation-delay:-.35s}.island-wave i:nth-child(3){height:10px;animation-delay:-.65s}.island-wave i:nth-child(4){height:18px;animation-delay:-.2s}
+@keyframes islandWave{to{transform:scaleY(.42);opacity:.68}}
+.topbar,.bottom-nav,.add-friend-panel,.friend-action-panel,#cpPanel,#profilePanel,#gjPanel,#sendRobuxPanel{transition-timing-function:var(--ios-spring)!important}
+.home-indicator{bottom:8px!important;width:134px!important;height:5px!important;border-radius:99px!important;background:rgba(0,0,0,.86)!important;mix-blend-mode:multiply}
+.keyboard-dismiss{font-size:0!important}.keyboard-dismiss:before{content:"⌨";font-size:17px;line-height:1}
+
+/* Stable Send Robux lookup, Roblox-style metadata and completion alert. */
+body,.iphone-screen,button,input{font-family:"Inter","Builder Sans","Helvetica Neue",Arial,sans-serif!important}
+#srDropdown{min-height:0!important;max-height:82px!important;overflow:hidden!important;border-radius:14px!important;transition:none!important;contain:layout paint}
+#srDropdown .api-state-row{height:72px!important;min-height:72px!important;padding:0 16px!important;display:flex!important;align-items:center!important;gap:10px!important;box-sizing:border-box!important;font-size:14px!important}
+#srDropdown .api-user-row{height:72px!important;min-height:72px!important;padding:10px 13px!important;display:flex!important;align-items:center!important;gap:12px!important;overflow:hidden!important;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+#srDropdown .api-user-copy{display:flex!important;flex-direction:column!important;justify-content:center!important;min-width:0!important;overflow:hidden!important}
+#srDropdown .api-display-name,#srDropdown .api-username{display:block!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#srDropdown .api-display-name{font-size:15px!important;font-weight:700!important;color:#1c1c1e!important}
+#srDropdown .api-username{font-size:13px!important;color:#727278!important;margin-top:2px!important}
+.game-stats{display:flex;align-items:center;gap:11px;margin-top:4px;color:#66676c;font-size:11.5px;font-weight:500;white-space:nowrap}
+.game-stat{display:inline-flex;align-items:center;gap:4px}.game-stat svg{width:13px;height:13px;fill:currentColor;display:block}
+.game-card .game-rating{margin-top:0!important;min-height:auto!important}
+.continue-card{position:relative;padding-bottom:48px;border-radius:10px;background:#fff}
+.continue-play{position:absolute;left:0;right:0;bottom:0;height:40px;border:0;border-radius:8px;background:#335fff;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 2px rgba(19,50,150,.18);transition:transform .12s ease,filter .12s ease}
+.continue-play:active{transform:scale(.97);filter:brightness(.93)}
+.continue-play:before{content:"";width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid #fff;margin-left:4px}
+.robux-send-success{display:none;position:absolute;inset:0;z-index:150000;align-items:center;justify-content:center;background:rgba(0,0,0,.38);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);opacity:0;transition:opacity .2s ease}
+.robux-send-success.open{opacity:1}.robux-send-success-card{width:calc(100% - 58px);max-width:320px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 22px 70px rgba(0,0,0,.27);transform:scale(.91);transition:transform .36s var(--ios-spring)}
+.robux-send-success.open .robux-send-success-card{transform:scale(1)}
+.robux-send-success-body{padding:26px 22px 22px;text-align:center}.robux-send-success-icon{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:#34c759;color:#fff;display:grid;place-items:center;font-size:31px;font-weight:700}.robux-send-success-title{font-size:18px;font-weight:750;letter-spacing:-.3px;color:#1c1c1e}.robux-send-success-copy{margin-top:7px;font-size:14px;line-height:1.35;color:#63646a}.robux-send-success-ok{width:100%;height:50px;border:0;border-top:1px solid #e5e5ea;background:#fff;color:#007aff;font-size:17px;font-weight:650;cursor:pointer}.robux-send-success-ok:active{background:#f1f1f4}
+@media(max-width:520px){
+  .device-stage{padding:42px 4px 4px!important}.iphone-shell{width:min(calc(100vw - 8px),calc(46.0251dvh - 21.17px))!important;height:auto!important;aspect-ratio:1320 / 2868!important;padding:6px!important;border:1px solid #292b2e!important;border-radius:42px!important;background:#050607!important;box-shadow:0 0 0 2px #08090a,0 12px 34px rgba(0,0,0,.42),inset 0 0 0 1px #17191b!important}
+  .iphone-shell:before,.iphone-shell:after{display:none}.iphone-screen{border-radius:35px!important;box-shadow:0 0 0 1px #0d0e10!important}
+  .ios-status-bar{padding-left:max(28px,env(safe-area-inset-left))!important;padding-right:max(26px,env(safe-area-inset-right))!important;padding-top:env(safe-area-inset-top)!important;height:calc(54px + env(safe-area-inset-top))!important;flex-basis:calc(54px + env(safe-area-inset-top))!important}
+  .dynamic-island{top:calc(10px + env(safe-area-inset-top))}
+  .bottom-nav{padding-bottom:max(25px,calc(env(safe-area-inset-bottom) + 9px))!important;height:calc(var(--nav-h) + env(safe-area-inset-bottom))!important;flex-basis:calc(var(--nav-h) + env(safe-area-inset-bottom))!important}
+}
+@media(max-height:720px) and (min-width:521px){.device-stage{padding:8px!important}.iphone-shell{width:min(430px,calc(100vw - 16px),calc(46.0251dvh - 7.36px))!important;height:auto!important;aspect-ratio:1320 / 2868!important;border-radius:46px!important;padding:8px!important}.iphone-screen{border-radius:37px!important}}

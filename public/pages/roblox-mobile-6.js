@@ -1,0 +1,1 @@
+var PROXY='/api/profile';
