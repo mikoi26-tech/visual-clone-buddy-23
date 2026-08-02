@@ -1,0 +1,97 @@
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#fff;color:#1a1a1a;max-width:390px;margin:0 auto;min-height:100vh;padding-bottom:70px;}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:#fff;border-bottom:1px solid #ebebeb;position:sticky;top:0;z-index:100;}
+.topbar-left{display:flex;align-items:center;gap:10px;}
+.topbar-right{display:flex;align-items:center;gap:16px;}
+.topbar-right img{width:24px;height:24px;object-fit:contain;}
+.topbar-right svg{width:24px;height:24px;}
+.hamburger{font-size:20px;color:#1a1a1a;cursor:pointer;line-height:1;}
+.lang-toggle{display:flex;gap:4px;margin-left:6px;}
+.lang-btn{font-size:11px;font-weight:700;color:#888;background:#f0f0f0;border:none;border-radius:20px;padding:4px 9px;cursor:pointer;line-height:1;}
+.lang-btn.active{background:#1a1a1a;color:#fff;}
+
+.profile{display:flex;align-items:center;gap:10px;padding:12px 14px 10px;}
+.pfp{width:44px;height:44px;border-radius:50%;background:#ddd;overflow:hidden;flex-shrink:0;}
+.pfp img{width:100%;height:100%;object-fit:cover;display:block;}
+.username-row{display:flex;align-items:center;gap:6px;}
+.username{font-size:16px;font-weight:700;}
+.rplus{width:20px;height:20px;object-fit:contain;}
+
+.friends-scroll{width:100%;overflow-x:scroll;overflow-y:visible;-webkit-overflow-scrolling:touch;padding:4px 14px 14px;}
+.friends-inner{display:inline-flex;flex-direction:row;gap:12px;align-items:flex-start;}
+.friend{text-align:center;width:78px;flex-shrink:0;}
+.friend-circle{width:72px;height:72px;border-radius:50%;overflow:hidden;margin:0 auto 5px;position:relative;}
+.friend-circle img{width:100%;height:100%;object-fit:cover;display:block;}
+.online{position:absolute;bottom:2px;right:2px;width:13px;height:13px;background:#22c55e;border-radius:50%;border:2px solid #fff;}
+.friend-name{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.friend-game{font-size:11px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.addf-circle{width:72px;height:72px;border-radius:50%;background:#e8e8e8;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;}
+.addf-circle img{width:40px;height:40px;object-fit:contain;}
+
+.section{padding:0 14px 20px;}
+.section-title{font-size:17px;font-weight:800;margin-bottom:10px;}
+.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.game-thumb{width:100%;aspect-ratio:16/9;border-radius:10px;margin-bottom:5px;}
+.game-name{font-size:13px;font-weight:700;margin-bottom:1px;}
+.game-rating{font-size:11px;color:#666;}
+
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:390px;background:#fff;border-top:1px solid #e8e8e8;display:flex;justify-content:space-around;align-items:center;padding:8px 0 18px;z-index:100;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:500;color:#999;cursor:pointer;}
+.nav-item.active{color:#1a1a1a;}
+.nav-item svg{width:24px;height:24px;}
+.nav-pfp{width:26px;height:26px;border-radius:50%;overflow:hidden;border:2px solid #1a1a1a;}
+.nav-pfp img{width:100%;height:100%;object-fit:cover;display:block;}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+input[type=number] { -moz-appearance:textfield; }
+
+/* Added-friends state: real API accounts only, persisted locally after the user adds them. */
+#addFriendCard{cursor:pointer;outline:none}
+#addFriendCard:focus-visible .addf-circle{box-shadow:0 0 0 3px rgba(51,93,255,.25)}
+.added-friend-card{cursor:default}
+.added-friend-card .friend-circle{background:#eeeef4}
+.added-friend-card .friend-circle img{object-position:center top}
+.friend-remove-mini{position:absolute;right:-2px;top:-2px;width:22px;height:22px;border:2px solid #fff;border-radius:50%;background:#3a3a3c;color:#fff;font-size:15px;line-height:16px;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.8);transition:.15s ease;cursor:pointer}
+.added-friend-card:hover .friend-remove-mini,.added-friend-card:focus-within .friend-remove-mini{opacity:1;transform:scale(1)}
+
+.add-friend-sheet{display:none;position:absolute;inset:0;z-index:110000;background:rgba(0,0,0,0);align-items:flex-end;justify-content:center;transition:background .28s ease}
+.add-friend-sheet.open{background:rgba(0,0,0,.42)}
+.add-friend-panel{width:100%;background:#f7f7f9;border-radius:24px 24px 0 0;padding:12px 18px calc(18px + env(safe-area-inset-bottom));box-sizing:border-box;transform:translateY(105%);transition:transform .34s cubic-bezier(.22,.8,.25,1);box-shadow:0 -18px 55px rgba(0,0,0,.16)}
+.add-friend-sheet.open .add-friend-panel{transform:translateY(0)}
+.add-friend-handle{width:36px;height:4px;border-radius:999px;background:#c7c7cc;margin:0 auto 16px}
+.add-friend-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.add-friend-title{font-size:20px;font-weight:760;letter-spacing:-.45px}
+.add-friend-close{width:31px;height:31px;border:0;border-radius:50%;background:#e5e5ea;color:#6d6d72;font-size:19px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.add-friend-copy{font-size:13px;line-height:1.35;color:#6e6e73;margin:-8px 0 14px}
+.add-friend-input{width:100%;height:49px;border:1px solid #d4d4d9;border-radius:14px;background:#fff;padding:0 15px;font-size:16px;color:#111;outline:none;box-sizing:border-box;box-shadow:0 1px 1px rgba(0,0,0,.025)}
+.add-friend-input:focus{border-color:#335dff;box-shadow:0 0 0 3px rgba(51,93,255,.13)}
+.add-friend-error{min-height:18px;padding:7px 2px 2px;color:#d70015;font-size:12.5px;line-height:1.3}
+.add-friend-actions{display:flex;gap:10px;margin-top:9px}
+.add-friend-button{height:47px;border:0;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;transition:transform .08s ease,opacity .15s ease}
+.add-friend-button:active{transform:scale(.98)}
+.add-friend-button.secondary{flex:1;background:#e5e5ea;color:#1c1c1e}
+.add-friend-button.primary{flex:1.25;background:#335dff;color:#fff}
+.add-friend-button:disabled{opacity:.48;cursor:default}
+
+#srFriendList .api-friend-row{width:100%;border:0;background:#fff;border-radius:16px;display:flex;align-items:center;gap:12px;padding:11px 12px;margin-bottom:9px;text-align:left;cursor:pointer;box-shadow:0 0 0 1px rgba(0,0,0,.045);transition:transform .08s ease,background .12s ease}
+#srFriendList .api-friend-row:active{transform:scale(.985);background:#f2f2f5}
+#srFriendList .api-friend-row img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center top;background:#ececf0}
+.api-friend-text{min-width:0;display:flex;flex-direction:column}
+.api-friend-display{font-size:15px;font-weight:700;color:#1c1c1e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.api-friend-handle{font-size:12.5px;color:#77777d;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-empty-friends{padding:22px 14px;border:1px dashed #d5d5da;border-radius:16px;background:rgba(255,255,255,.58);text-align:center;color:#77777d;font-size:13px;line-height:1.42}
+
+/* Lachy's Visuals premium presentation */
+html,body{min-height:100%;overflow:auto!important;background:#050506!important}
+body{transition:background .4s ease;color-scheme:dark}
+.device-stage{height:auto!important;min-height:1185px!important;padding:58px 24px 72px!important;overflow:visible!important;position:relative;z-index:2}
+.iphone-shell{transform:scale(1.25);transform-origin:center center;flex:0 0 auto}
+.visual-backdrop{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;background:radial-gradient(circle at 22% 18%,rgba(255,255,255,.18),transparent 29%),radial-gradient(circle at 78% 70%,rgba(255,255,255,.09),transparent 34%),linear-gradient(135deg,#030303 0%,#292a2e 48%,#050505 100%);transition:background .45s ease}
+.visual-backdrop:before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.8) 0 1px,transparent 1.5px);background-size:83px 83px;opacity:.25}
+.visual-backdrop i{position:absolute;width:160px;height:1px;background:linear-gradient(90deg,transparent,#fff,transparent);filter:drop-shadow(0 0 5px #fff);transform:rotate(-35deg);animation:shoot 7s linear infinite;opacity:0}.visual-backdrop i:nth-child(1){top:8%;left:10%;animation-delay:.4s}.visual-backdrop i:nth-child(2){top:28%;left:70%;animation-delay:2.8s}.visual-backdrop i:nth-child(3){top:68%;left:18%;animation-delay:4.9s}.visual-backdrop i:nth-child(4){top:48%;left:88%;animation-delay:6.2s}.visual-backdrop i:nth-child(5){top:86%;left:58%;animation-delay:8.3s}@keyframes shoot{0%{translate:-180px -120px;opacity:0}8%{opacity:.9}24%{translate:340px 245px;opacity:0}100%{opacity:0}}
+body[data-backdrop="black"] .visual-backdrop{background:#000}body[data-backdrop="black"] .visual-backdrop:before,body[data-backdrop="black"] .visual-backdrop i,body[data-backdrop="white"] .visual-backdrop:before,body[data-backdrop="white"] .visual-backdrop i{display:none}body[data-backdrop="white"] .visual-backdrop{background:#fff}
+.backdrop-picker{position:fixed;top:20px;right:20px;z-index:20;display:flex;align-items:center;gap:4px;padding:6px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(8,8,10,.7);box-shadow:0 16px 50px rgba(0,0,0,.28);backdrop-filter:blur(22px);font:700 11px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff}.backdrop-picker span{padding:0 8px;color:#aaa;text-transform:uppercase;letter-spacing:.1em}.backdrop-picker button{border:0;border-radius:10px;padding:10px 12px;background:transparent;color:#aaa;font:700 11px inherit;cursor:pointer}.backdrop-picker button.active{background:#fff;color:#050505;box-shadow:0 4px 16px rgba(255,255,255,.14)}
+@media(max-width:700px){.backdrop-picker{top:8px;right:8px;transform:scale(.9);transform-origin:top right}.device-stage{min-height:100dvh!important;padding:0!important}.iphone-shell{transform:none!important;width:100%!important;height:100dvh!important;border-radius:0!important;padding:0!important}.iphone-screen{border-radius:0!important}}

@@ -1,0 +1,97 @@
+/* Shared, deliberately irregular star motion for the keywall, hub and Roblox visual. */
+.starfield,
+.lv-cosmos,
+.visual-backdrop{
+  isolation:isolate;
+}
+
+body .starfield{
+  display:block!important;
+}
+
+body .starfield::before,
+body .lv-cosmos::before,
+body .visual-backdrop::before{
+  background-image:none!important;
+}
+
+.lv-static-star{
+  position:absolute;
+  z-index:0;
+  left:var(--star-x);
+  top:var(--star-y);
+  width:var(--star-size);
+  height:var(--star-size);
+  border-radius:50%;
+  background:var(--star-color,#fff);
+  opacity:var(--star-opacity,.6);
+  box-shadow:0 0 var(--star-glow,6px) var(--star-color,#fff);
+  animation:lvIrregularTwinkle var(--star-twinkle,4s) var(--star-twinkle-delay,0s) ease-in-out infinite alternate;
+  transform:translateZ(0) scale(.72);
+  will-change:transform,opacity;
+  pointer-events:none;
+}
+
+.starfield>span,
+.lv-cosmos>.lv-star,
+.visual-backdrop>i{
+  position:absolute!important;
+  z-index:1!important;
+  display:block!important;
+  left:var(--shoot-left,108%)!important;
+  top:var(--shoot-top,18%)!important;
+  width:var(--shoot-tail,130px)!important;
+  height:var(--shoot-height,1px)!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,transparent,rgba(121,177,255,.16),rgba(255,255,255,.98))!important;
+  filter:drop-shadow(0 0 var(--shoot-glow,6px) rgba(142,196,255,.78))!important;
+  opacity:0;
+  transform:translate3d(0,0,0) rotate(var(--shoot-angle,-25deg))!important;
+  animation-name:lvIrregularShoot!important;
+  animation-duration:var(--shoot-speed,14s)!important;
+  animation-delay:var(--shoot-delay,-3s)!important;
+  animation-timing-function:linear!important;
+  animation-iteration-count:infinite!important;
+  will-change:transform,opacity;
+}
+
+.starfield>span::after,
+.lv-cosmos>.lv-star::after,
+.visual-backdrop>i::after{
+  content:""!important;
+  position:absolute!important;
+  right:-1px!important;
+  top:50%!important;
+  width:var(--shoot-head,3px)!important;
+  height:var(--shoot-head,3px)!important;
+  border-radius:50%!important;
+  background:#fff!important;
+  box-shadow:0 0 8px #bde8ff,0 0 18px rgba(159,111,255,.7)!important;
+  transform:translateY(-50%)!important;
+}
+
+@keyframes lvIrregularTwinkle{
+  0%{opacity:var(--star-dim,.12);transform:translateZ(0) scale(.68)}
+  48%{opacity:var(--star-opacity,.6);transform:translateZ(0) scale(1.02)}
+  100%{opacity:var(--star-bright,.9);transform:translateZ(0) scale(1.28)}
+}
+
+@keyframes lvIrregularShoot{
+  0%,64%{opacity:0;transform:translate3d(0,0,0) rotate(var(--shoot-angle,-25deg))}
+  68%{opacity:var(--shoot-opacity,.82)}
+  84%,100%{opacity:0;transform:translate3d(var(--shoot-travel-x,-980px),var(--shoot-travel-y,420px),0) rotate(var(--shoot-angle,-25deg))}
+}
+
+body[data-backdrop="black"] .visual-backdrop .lv-static-star,
+body[data-backdrop="white"] .visual-backdrop .lv-static-star,
+body[data-backdrop="black"] .visual-backdrop>i,
+body[data-backdrop="white"] .visual-backdrop>i{
+  display:none!important;
+}
+
+@media(max-width:760px){
+  .starfield>span:nth-of-type(n+7),
+  .lv-cosmos>.lv-star:nth-of-type(n+7),
+  .visual-backdrop>i:nth-of-type(n+7){display:none!important}
+}
+

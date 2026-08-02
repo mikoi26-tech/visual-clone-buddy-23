@@ -1,0 +1,1 @@
+document.addEventListener("click",function(e){const a=e.target.closest("a");if(!a)return;const h=a.getAttribute("href")||"";if(h==="#"||h==="javascript:void(0)"){e.preventDefault();}});

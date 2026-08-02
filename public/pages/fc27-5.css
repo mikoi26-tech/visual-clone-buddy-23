@@ -1,0 +1,19 @@
+
+/* Final navigation chevron correction */
+.nav-links a{display:inline-flex;align-items:center;white-space:nowrap}
+.nav-links .drop::after{
+  content:"" !important;
+  display:inline-block !important;
+  width:7px !important;
+  height:7px !important;
+  margin-left:10px !important;
+  border:0 !important;
+  border-right:1.5px solid currentColor !important;
+  border-bottom:1.5px solid currentColor !important;
+  transform:rotate(45deg) !important;
+  position:relative !important;
+  top:-2px !important;
+  font-size:0 !important;
+  line-height:0 !important;
+  flex:0 0 auto;
+}

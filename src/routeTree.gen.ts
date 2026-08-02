@@ -10,18 +10,68 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R2k27RouteImport } from './routes/2k27'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AppRouteImport } from './routes/app'
+import { Route as CashAppRouteImport } from './routes/cash-app'
+import { Route as Fc27RouteImport } from './routes/fc27'
+import { Route as FortniteRouteImport } from './routes/fortnite'
+import { Route as GiftCardRouteImport } from './routes/gift-card'
+import { Route as RobloxMobileRouteImport } from './routes/roblox-mobile'
+import { Route as ApiActivityRouteImport } from './routes/api/activity'
 import { Route as ApiCheckSessionRouteImport } from './routes/api/check-session'
 import { Route as ApiRedeemKeyRouteImport } from './routes/api/redeem-key'
+import { Route as ApiAdminKeysRouteImport } from './routes/api/admin/keys'
+import { Route as ApiAdminLoginRouteImport } from './routes/api/admin/login'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R2k27Route = R2k27RouteImport.update({
+  id: '/2k27',
+  path: '/2k27',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CashAppRoute = CashAppRouteImport.update({
+  id: '/cash-app',
+  path: '/cash-app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Fc27Route = Fc27RouteImport.update({
+  id: '/fc27',
+  path: '/fc27',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FortniteRoute = FortniteRouteImport.update({
+  id: '/fortnite',
+  path: '/fortnite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftCardRoute = GiftCardRouteImport.update({
+  id: '/gift-card',
+  path: '/gift-card',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobloxMobileRoute = RobloxMobileRouteImport.update({
+  id: '/roblox-mobile',
+  path: '/roblox-mobile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiActivityRoute = ApiActivityRouteImport.update({
+  id: '/api/activity',
+  path: '/api/activity',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiCheckSessionRoute = ApiCheckSessionRouteImport.update({
@@ -34,39 +84,132 @@ const ApiRedeemKeyRoute = ApiRedeemKeyRouteImport.update({
   path: '/api/redeem-key',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAdminKeysRoute = ApiAdminKeysRouteImport.update({
+  id: '/api/admin/keys',
+  path: '/api/admin/keys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminLoginRoute = ApiAdminLoginRouteImport.update({
+  id: '/api/admin/login',
+  path: '/api/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/2k27': typeof R2k27Route
+  '/admin': typeof AdminRoute
   '/app': typeof AppRoute
+  '/cash-app': typeof CashAppRoute
+  '/fc27': typeof Fc27Route
+  '/fortnite': typeof FortniteRoute
+  '/gift-card': typeof GiftCardRoute
+  '/roblox-mobile': typeof RobloxMobileRoute
+  '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
+  '/api/admin/keys': typeof ApiAdminKeysRoute
+  '/api/admin/login': typeof ApiAdminLoginRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/2k27': typeof R2k27Route
+  '/admin': typeof AdminRoute
   '/app': typeof AppRoute
+  '/cash-app': typeof CashAppRoute
+  '/fc27': typeof Fc27Route
+  '/fortnite': typeof FortniteRoute
+  '/gift-card': typeof GiftCardRoute
+  '/roblox-mobile': typeof RobloxMobileRoute
+  '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
+  '/api/admin/keys': typeof ApiAdminKeysRoute
+  '/api/admin/login': typeof ApiAdminLoginRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/2k27': typeof R2k27Route
+  '/admin': typeof AdminRoute
   '/app': typeof AppRoute
+  '/cash-app': typeof CashAppRoute
+  '/fc27': typeof Fc27Route
+  '/fortnite': typeof FortniteRoute
+  '/gift-card': typeof GiftCardRoute
+  '/roblox-mobile': typeof RobloxMobileRoute
+  '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
+  '/api/admin/keys': typeof ApiAdminKeysRoute
+  '/api/admin/login': typeof ApiAdminLoginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/api/check-session' | '/api/redeem-key'
+  fullPaths:
+    | '/'
+    | '/2k27'
+    | '/admin'
+    | '/app'
+    | '/cash-app'
+    | '/fc27'
+    | '/fortnite'
+    | '/gift-card'
+    | '/roblox-mobile'
+    | '/api/activity'
+    | '/api/check-session'
+    | '/api/redeem-key'
+    | '/api/admin/keys'
+    | '/api/admin/login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app' | '/api/check-session' | '/api/redeem-key'
-  id: '__root__' | '/' | '/app' | '/api/check-session' | '/api/redeem-key'
+  to:
+    | '/'
+    | '/2k27'
+    | '/admin'
+    | '/app'
+    | '/cash-app'
+    | '/fc27'
+    | '/fortnite'
+    | '/gift-card'
+    | '/roblox-mobile'
+    | '/api/activity'
+    | '/api/check-session'
+    | '/api/redeem-key'
+    | '/api/admin/keys'
+    | '/api/admin/login'
+  id:
+    | '__root__'
+    | '/'
+    | '/2k27'
+    | '/admin'
+    | '/app'
+    | '/cash-app'
+    | '/fc27'
+    | '/fortnite'
+    | '/gift-card'
+    | '/roblox-mobile'
+    | '/api/activity'
+    | '/api/check-session'
+    | '/api/redeem-key'
+    | '/api/admin/keys'
+    | '/api/admin/login'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R2k27Route: typeof R2k27Route
+  AdminRoute: typeof AdminRoute
   AppRoute: typeof AppRoute
+  CashAppRoute: typeof CashAppRoute
+  Fc27Route: typeof Fc27Route
+  FortniteRoute: typeof FortniteRoute
+  GiftCardRoute: typeof GiftCardRoute
+  RobloxMobileRoute: typeof RobloxMobileRoute
+  ApiActivityRoute: typeof ApiActivityRoute
   ApiCheckSessionRoute: typeof ApiCheckSessionRoute
   ApiRedeemKeyRoute: typeof ApiRedeemKeyRoute
+  ApiAdminKeysRoute: typeof ApiAdminKeysRoute
+  ApiAdminLoginRoute: typeof ApiAdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -78,11 +221,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/2k27': {
+      id: '/2k27'
+      path: '/2k27'
+      fullPath: '/2k27'
+      preLoaderRoute: typeof R2k27RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app': {
       id: '/app'
       path: '/app'
       fullPath: '/app'
       preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cash-app': {
+      id: '/cash-app'
+      path: '/cash-app'
+      fullPath: '/cash-app'
+      preLoaderRoute: typeof CashAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fc27': {
+      id: '/fc27'
+      path: '/fc27'
+      fullPath: '/fc27'
+      preLoaderRoute: typeof Fc27RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fortnite': {
+      id: '/fortnite'
+      path: '/fortnite'
+      fullPath: '/fortnite'
+      preLoaderRoute: typeof FortniteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gift-card': {
+      id: '/gift-card'
+      path: '/gift-card'
+      fullPath: '/gift-card'
+      preLoaderRoute: typeof GiftCardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roblox-mobile': {
+      id: '/roblox-mobile'
+      path: '/roblox-mobile'
+      fullPath: '/roblox-mobile'
+      preLoaderRoute: typeof RobloxMobileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/activity': {
+      id: '/api/activity'
+      path: '/api/activity'
+      fullPath: '/api/activity'
+      preLoaderRoute: typeof ApiActivityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/check-session': {
@@ -99,14 +298,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiRedeemKeyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/admin/keys': {
+      id: '/api/admin/keys'
+      path: '/api/admin/keys'
+      fullPath: '/api/admin/keys'
+      preLoaderRoute: typeof ApiAdminKeysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/login': {
+      id: '/api/admin/login'
+      path: '/api/admin/login'
+      fullPath: '/api/admin/login'
+      preLoaderRoute: typeof ApiAdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R2k27Route: R2k27Route,
+  AdminRoute: AdminRoute,
   AppRoute: AppRoute,
+  CashAppRoute: CashAppRoute,
+  Fc27Route: Fc27Route,
+  FortniteRoute: FortniteRoute,
+  GiftCardRoute: GiftCardRoute,
+  RobloxMobileRoute: RobloxMobileRoute,
+  ApiActivityRoute: ApiActivityRoute,
   ApiCheckSessionRoute: ApiCheckSessionRoute,
   ApiRedeemKeyRoute: ApiRedeemKeyRoute,
+  ApiAdminKeysRoute: ApiAdminKeysRoute,
+  ApiAdminLoginRoute: ApiAdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

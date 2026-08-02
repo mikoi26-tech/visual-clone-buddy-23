@@ -1,0 +1,18 @@
+
+body.fc-phone-mode .fc-roblox-appstore-sheet{padding:17px 14px 20px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-sheet-head{padding:0 0 12px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-sheet-head strong{font-size:19px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-product{padding:12px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-product-main{grid-template-columns:48px minmax(0,1fr)!important;gap:10px!important;padding-bottom:10px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-product-main img{width:48px!important;height:48px!important;border-radius:10px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-product-copy strong{font-size:15px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-product-copy span{font-size:11px!important}
+body.fc-phone-mode .fc-ios-price{padding:10px 0!important}body.fc-phone-mode .fc-ios-price strong{font-size:19px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-account{padding-top:10px!important;font-size:11px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-side-confirm{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:6px!important;padding:14px 0 0!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-side-icon{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;width:50px!important;height:50px!important;margin:0 auto 3px!important;border-width:3px!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-side-icon svg{position:static!important;display:block!important;width:27px!important;height:27px!important;margin:0!important;transform:none!important}
+body.fc-phone-mode .fc-roblox-appstore-sheet .fc-ios-side-confirm>strong{font-size:14px!important}
+body.fc-phone-mode .fc-compact-state .fc-processing-ring{width:42px!important;height:42px!important;margin-bottom:14px!important;border-width:3px!important}
+body.fc-phone-mode .fc-compact-state h2{font-size:21px!important}
+body.fc-phone-mode .fc-compact-state .fc-process-bar{margin:15px auto 9px!important}

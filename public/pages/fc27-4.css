@@ -1,0 +1,85 @@
+
+/* Final pixel-polish pass */
+@font-face{font-family:cruyffsansregular;font-style:normal;font-weight:400;font-display:swap;src:url("https://www.ea.com/fonts/fc-27/CruyffSansCondensed-Regular.otf") format("opentype")}
+@font-face{font-family:cruyffsanscondensed;font-style:normal;font-weight:500;font-display:swap;src:url("https://www.ea.com/fonts/fc-27/CruyffSansCondensed-Medium.otf") format("opentype")}
+@font-face{font-family:cruyffsansexpanded;font-style:normal;font-weight:900;font-display:swap;src:url("https://www.ea.com/fonts/fc-27/CruyffSansExpanded-Heavy.otf") format("opentype")}
+:root{--green:#00ff85;--ea-dark:#131514;--ea-footer:#464844}
+html,body{max-width:100%;overflow-x:hidden}body{font-family:electronicartstext,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+.wrap{width:min(1248px,calc(100% - 48px));margin-inline:auto}
+.ea-bar{height:44px;padding:0 20px;background:#11172a;font-size:13px}
+.local-nav{height:58px;background:#151716;border-bottom:1px solid #3b3d3b}
+.nav-inner{padding:0 24px;gap:31px}
+.local-nav .fc-logo{width:102px;height:28px;object-fit:contain;object-position:left center}
+.nav-links{gap:29px;font-size:14px}
+.nav-links .drop:after{content:"⌄";font-size:16px;margin-left:7px;position:relative;top:-1px}
+.preorder-top{min-width:107px;height:38px;border-radius:5px;font-size:13px}
+.hero{padding:64px 0 41px;min-height:724px;background-position:center top}
+.title{font-family:cruyffsansregular,electronicartsdisplay,sans-serif;font-size:28px;letter-spacing:.065em;line-height:1;margin-bottom:28px}
+.hero-grid{grid-template-columns:minmax(0,874px) minmax(286px,1fr);gap:74px}
+.side-card{padding-top:0}
+.video-card{border-radius:6px;box-shadow:none}
+.gallery-stage,.gallery-stage iframe,.gallery-stage img{width:100%;height:100%}
+.gallery-stage img{object-fit:cover;display:block}
+.video-caption{font-size:12.5px;line-height:1.35;margin:9px auto 17px}
+.thumb-row{display:grid;grid-template-columns:34px minmax(0,1fr) 34px;gap:9px}
+.thumb-strip{display:flex;gap:8px;overflow:hidden;scroll-behavior:smooth}
+.thumb{flex:0 0 120px;width:120px;border-radius:4px}
+.gallery-nav{width:34px;height:34px;border-radius:4px}
+.side-art{border-radius:6px}
+.tagline{margin:12px 0 13px}
+.platforms{margin:10px 0 17px;gap:8px}
+.release{margin-bottom:17px}
+.price{font-size:29px;line-height:1.05}
+.cta{height:45px;padding:0 18px;border-radius:5px}
+.legal-mini{font-size:10.5px;line-height:1.45;margin:13px 0}
+.rating{padding-top:13px}
+.green-section{padding:0 0 74px;background-position:center top;overflow:hidden}
+.edition-wrap{padding-top:72px}
+.edition-intro-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(600px,1.15fr);gap:48px;align-items:center;min-height:348px}
+.edition-copy{align-self:start;padding-top:26px}
+.section-title{font-family:cruyffsansexpanded,electronicartsdisplay,sans-serif;font-size:45px;letter-spacing:.018em;line-height:.98}
+.section-desc{max-width:550px;font-size:17px;line-height:1.45;margin-top:22px}
+.edition-feature-stage{position:relative;min-height:320px;display:flex;align-items:center;justify-content:flex-end}
+.edition-feature-art{position:absolute;left:-4px;top:50%;transform:translateY(-51%);width:300px;height:300px;object-fit:contain;z-index:2;filter:drop-shadow(0 14px 18px rgba(0,0,0,.08))}
+.edition-feature-card{width:456px;min-height:294px;background:#e8e8e6;border-radius:7px;padding:82px 30px 30px 164px;display:flex;flex-direction:column;justify-content:center}
+.edition-feature-card h3{font-family:cruyffsansregular,electronicartsdisplay,sans-serif;text-transform:uppercase;letter-spacing:.075em;font-weight:400;font-size:21px;line-height:1.14;margin:11px 0 8px}
+.edition-feature-card p{font-size:15px;line-height:1.45;margin:0}
+.edition-chip{display:inline-flex;align-items:center;min-height:24px;padding:3px 8px;border:1px solid #8e908d;border-radius:4px;font:500 10px/1.1 electronicartstext,Arial,sans-serif;white-space:nowrap}
+.bonus-carousel{margin-top:8px}
+.bonus-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.bonus-card{padding-top:118px}
+.bonus-card img{width:184px;height:184px}
+.bonus-body{min-height:284px;padding:105px 16px 22px;border-radius:7px}
+.bonus-body h3{font-size:20px;line-height:1.15;letter-spacing:.075em}
+.bonus-body p{font-size:15px;line-height:1.45}
+.carousel-actions{margin-top:16px}
+.arrow{width:31px;height:31px;border-radius:4px}
+.features-title{font-size:28px}
+.feature-grid{gap:24px}
+.feature h3{font-size:20px}
+.recommend{padding:64px 0 88px}
+.recommend .title,.recommend h2{font-size:26px}
+.rec-grid{gap:22px}
+.rec-card{border-color:#777a76;border-radius:8px}
+.rec-card img{aspect-ratio:1/1.02;object-fit:cover}
+.rec-info{min-height:136px;padding:14px 15px 16px}
+.rec-info h3{font-size:20px;line-height:1.15;margin:10px 0 7px}
+.rec-price{font-size:22px}
+.footer{background:#464844}
+.footer,.footer *{font-family:electronicartstext,"Helvetica Neue",Arial,sans-serif}
+.foot-legal{font-size:10.5px}
+.lv{font-size:9px;letter-spacing:.09em;padding:9px 0 10px;color:#8b8d89;background:#202220}
+/* Checkout: clean internal flow, no external handoff language. */
+.fc-checkout-brand img,.fc-payment-logo{object-fit:contain;object-position:left center}
+.fc-checkout-brand img{width:132px;height:34px}
+.fc-payment-logo{width:122px;height:31px}
+.fc-checkout-brand-copy strong{font-family:electronicartsdisplay,electronicartstext,sans-serif}
+.fc-payment-minimal h2,.fc-compact-state h2{font-family:electronicartsdisplay,electronicartstext,sans-serif}
+.fc-payment-minimal{padding-top:1px}
+.fc-minimal-pay-card{background:#121513;border-color:rgba(255,255,255,.11)}
+.fc-confirm-pay{background:var(--green);color:#07110b}
+.fc-success-compact .fc-finish{display:flex;align-items:center;justify-content:center;width:100%;height:48px;margin-top:14px;padding:0;border:0;border-radius:7px;background:var(--green);color:#07110b;font-size:13px;font-weight:700}
+.fc-success-compact .fc-finish:hover{background:var(--green);color:#07110b;filter:brightness(.94)}
+@media(max-width:1180px){.hero-grid{grid-template-columns:minmax(0,1fr) 286px;gap:48px}.edition-intro-grid{grid-template-columns:1fr 1.25fr;gap:22px}.edition-feature-stage{transform:scale(.92);transform-origin:right center}.bonus-grid{gap:17px}}
+@media(max-width:1000px){.edition-intro-grid{grid-template-columns:1fr}.edition-copy{padding-top:0}.edition-feature-stage{transform:none;justify-content:center}.edition-feature-art{left:calc(50% - 300px)}.bonus-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.local-nav .fc-logo{width:92px}.edition-wrap{padding-top:48px}.edition-feature-stage{min-height:430px;align-items:flex-end}.edition-feature-art{left:50%;top:10px;transform:translateX(-50%);width:230px;height:230px}.edition-feature-card{width:100%;min-height:255px;padding:110px 20px 24px}.bonus-grid{display:flex;overflow:auto}.bonus-card{min-width:82%}.rec-card img{aspect-ratio:16/10}}
