@@ -1,24 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { lvMarkup } from "@/content/lv-markup";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Member Access | Lachy's Visuals" },
+      {
+        name: "description",
+        content:
+          "Unlock the complete Lachy's Visuals interactive collection with one lifetime access key.",
+      },
+      { name: "theme-color", content: "#000000" },
+      { property: "og:title", content: "Member Access | Lachy's Visuals" },
+      {
+        property: "og:description",
+        content:
+          "Six interactive visual experiences. One lifetime key unlocks the complete library.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "stylesheet", href: "/lv-styles.css" }],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "/lv-page.js";
+    document.body.appendChild(script);
+    return () => {
+      script.remove();
+    };
+  }, []);
+
+  return <div style={{ display: "contents" }} dangerouslySetInnerHTML={{ __html: lvMarkup }} />;
 }
