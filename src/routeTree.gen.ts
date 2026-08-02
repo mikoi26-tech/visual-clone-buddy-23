@@ -20,6 +20,7 @@ import { Route as RobloxMobileRouteImport } from './routes/roblox-mobile'
 import { Route as ApiActivityRouteImport } from './routes/api/activity'
 import { Route as ApiCheckSessionRouteImport } from './routes/api/check-session'
 import { Route as ApiRedeemKeyRouteImport } from './routes/api/redeem-key'
+import { Route as ApiAdminLoginRouteImport } from './routes/api/admin/login'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const ApiRedeemKeyRoute = ApiRedeemKeyRouteImport.update({
   path: '/api/redeem-key',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAdminLoginRoute = ApiAdminLoginRouteImport.update({
+  id: '/api/admin/login',
+  path: '/api/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
+  '/api/admin/login': typeof ApiAdminLoginRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
+  '/api/admin/login': typeof ApiAdminLoginRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
+  '/api/admin/login': typeof ApiAdminLoginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/api/activity'
     | '/api/check-session'
     | '/api/redeem-key'
+    | '/api/admin/login'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/api/activity'
     | '/api/check-session'
     | '/api/redeem-key'
+    | '/api/admin/login'
   id:
     | '__root__'
     | '/'
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
     | '/api/activity'
     | '/api/check-session'
     | '/api/redeem-key'
+    | '/api/admin/login'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +183,7 @@ export interface RootRouteChildren {
   ApiActivityRoute: typeof ApiActivityRoute
   ApiCheckSessionRoute: typeof ApiCheckSessionRoute
   ApiRedeemKeyRoute: typeof ApiRedeemKeyRoute
+  ApiAdminLoginRoute: typeof ApiAdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiRedeemKeyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/admin/login': {
+      id: '/api/admin/login'
+      path: '/api/admin/login'
+      fullPath: '/api/admin/login'
+      preLoaderRoute: typeof ApiAdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiActivityRoute: ApiActivityRoute,
   ApiCheckSessionRoute: ApiCheckSessionRoute,
   ApiRedeemKeyRoute: ApiRedeemKeyRoute,
+  ApiAdminLoginRoute: ApiAdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
