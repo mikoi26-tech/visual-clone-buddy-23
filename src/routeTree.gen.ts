@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiCheckSessionRouteImport } from './routes/api/check-session'
+import { Route as ApiRedeemKeyRouteImport } from './routes/api/redeem-key'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ApiCheckSessionRoute = ApiCheckSessionRouteImport.update({
   path: '/api/check-session',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiRedeemKeyRoute = ApiRedeemKeyRouteImport.update({
+  id: '/api/redeem-key',
+  path: '/api/redeem-key',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/check-session': typeof ApiCheckSessionRoute
+  '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/check-session': typeof ApiCheckSessionRoute
+  '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/check-session': typeof ApiCheckSessionRoute
+  '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/check-session'
+  fullPaths: '/' | '/api/check-session' | '/api/redeem-key'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/check-session'
-  id: '__root__' | '/' | '/api/check-session'
+  to: '/' | '/api/check-session' | '/api/redeem-key'
+  id: '__root__' | '/' | '/api/check-session' | '/api/redeem-key'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiCheckSessionRoute: typeof ApiCheckSessionRoute
+  ApiRedeemKeyRoute: typeof ApiRedeemKeyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCheckSessionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/redeem-key': {
+      id: '/api/redeem-key'
+      path: '/api/redeem-key'
+      fullPath: '/api/redeem-key'
+      preLoaderRoute: typeof ApiRedeemKeyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiCheckSessionRoute: ApiCheckSessionRoute,
+  ApiRedeemKeyRoute: ApiRedeemKeyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
