@@ -62,7 +62,15 @@ export function StaticVisualPage({ slug }: { slug: string }) {
           added.push(script);
         });
       }
+
+      if (cancelled) return;
+      // These pages were standalone documents: their scripts wait for DOMContentLoaded/load,
+      // which already fired before we injected them, so replay both.
+      window.dispatchEvent(new Event("DOMContentLoaded"));
+      document.dispatchEvent(new Event("DOMContentLoaded"));
+      window.dispatchEvent(new Event("load"));
     })();
+
 
     return () => {
       cancelled = true;
