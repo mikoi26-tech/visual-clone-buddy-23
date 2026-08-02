@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="/motion-accessibility.css" />
+  <script src="/visual-runtime.js"></script>
+  <script src="/avatar-pools.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#05070b" />
+  <title>Gift Card Visual | Lachy's Visuals</title>
+  <style>
+    :root{
+      --bg:#05070b;
+      --panel:#0c1220;
+      --text:#f7f9fc;
+      --muted:#919bad;
+      --line:rgba(255,255,255,.09);
+      --ps:#0878d1;
+      --ps2:#2ea7ff;
+      --xb:#107c10;
+      --xb2:#43b72a;
+      --accent:var(--ps);
+      --accent2:var(--ps2);
+      --ease:cubic-bezier(.2,.8,.2,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 50% 0%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 28%),
+        linear-gradient(180deg,#05070b 0%,#070a11 52%,#05070b 100%);
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      -webkit-font-smoothing:antialiased;
+      transition:background .35s ease;
+    }
+    body.xbox{--accent:var(--xb);--accent2:var(--xb2)}
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.024) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.024) 1px,transparent 1px);
+      background-size:54px 54px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 75%);
+    }
+    button,input{font:inherit}
+    button{cursor:pointer}
+    .shell{position:relative;z-index:1;width:min(1240px,calc(100% - 28px));margin:0 auto;padding:24px 0 78px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:13px 15px;border:1px solid var(--line);border-radius:17px;
+      background:#0a0e16;box-shadow:0 16px 50px rgba(0,0,0,.25)
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    .brand-mark{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px color-mix(in srgb,var(--accent) 70%,transparent)}
+    .status{display:flex;align-items:center;gap:8px;color:#b9c0cd;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .status i{width:7px;height:7px;border-radius:50%;background:#62ff9d;box-shadow:0 0 12px rgba(98,255,157,.75)}
+
+    .hero{padding:78px 0 34px;text-align:center}
+    .eyebrow{margin-bottom:15px;color:#737d8f;font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
+    h1{margin:0;font-size:clamp(44px,8vw,92px);line-height:.92;letter-spacing:-.065em}
+    .platform-word{color:var(--accent);text-shadow:0 0 35px color-mix(in srgb,var(--accent) 22%,transparent);transition:color .35s ease}
+    .hero p{max-width:610px;margin:20px auto 0;color:#9aa3b5;font-size:16px;line-height:1.65}
+
+    .switch-wrap{display:flex;justify-content:center;margin:28px 0 42px}
+    .platform-switch{
+      position:relative;display:grid;grid-template-columns:1fr 1fr;width:min(440px,100%);
+      padding:5px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:#0c1018;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)
+    }
+    .platform-switch::before{
+      content:"";position:absolute;top:5px;left:5px;width:calc(50% - 5px);height:calc(100% - 10px);
+      border-radius:999px;background:linear-gradient(180deg,var(--accent2),var(--accent));
+      box-shadow:0 8px 25px color-mix(in srgb,var(--accent) 22%,transparent);
+      transition:transform .38s var(--ease),background .35s ease
+    }
+    body.xbox .platform-switch::before{transform:translateX(100%)}
+    .platform-switch button{position:relative;z-index:1;height:50px;border:0;background:transparent;color:#8790a1;font-weight:900;font-size:14px;transition:color .25s ease}
+    .platform-switch button.active{color:#fff}
+
+    /* Centered card shelf: 3 cards first row, 2 centered on the second row */
+    .cards{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:stretch;
+      gap:24px;
+      width:min(1120px,100%);
+      margin:0 auto;
+    }
+    .gift-card{
+      position:relative;
+      flex:0 1 336px;
+      width:min(336px,100%);
+      aspect-ratio:1.48/1;
+      min-height:0;
+      overflow:hidden;
+      border:0;
+      border-radius:24px;
+      color:#fff;
+      text-align:left;
+      padding:0;
+      isolation:isolate;
+      box-shadow:0 28px 65px rgba(0,0,0,.42),0 0 34px color-mix(in srgb,var(--accent) 10%,transparent);
+      transition:transform .25s var(--ease),box-shadow .3s ease;
+    }
+    .gift-card:hover{
+      transform:translateY(-7px);
+      box-shadow:0 36px 80px rgba(0,0,0,.5),0 0 55px color-mix(in srgb,var(--accent) 20%,transparent);
+    }
+    .gift-card:focus-visible{outline:3px solid #fff;outline-offset:5px}
+    .gift-card::after{
+      content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+      box-shadow:inset 0 1px rgba(255,255,255,.3),inset 0 -1px rgba(0,0,0,.2)
+    }
+
+    /* PlayStation card based on the supplied physical card reference */
+    .gift-card.ps-card{
+      background:linear-gradient(180deg,#f8f8f4 0 28%,#0652bd 28% 100%);
+      color:#0f4aa6;
+    }
+    .ps-card .ps-head{
+      position:absolute;left:18px;right:18px;top:14px;
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+      font-weight:950;
+    }
+    .ps-card .gift-label{font-size:16px;letter-spacing:-.02em}
+    .ps-card .amount{font-size:33px;line-height:.86;letter-spacing:-.055em;text-align:right}
+    .ps-card .amount small{display:block;margin-top:6px;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+    .ps-card .brand-logo{
+      position:absolute;left:50%;top:53%;transform:translate(-50%,-50%);
+      width:104px;height:104px;display:grid;place-items:center
+    }
+    .ps-card .brand-logo img{max-width:96px;max-height:82px;filter:brightness(0) invert(1) drop-shadow(0 12px 22px rgba(0,0,0,.22))}
+    .ps-card .mini-icons{
+      position:absolute;left:50%;bottom:38px;transform:translateX(-50%);
+      display:flex;gap:9px;align-items:center;opacity:.95
+    }
+    .ps-card .mini-icon{
+      width:27px;height:27px;border-radius:7px;display:grid;place-items:center;
+      background:rgba(255,255,255,.16);font-size:12px;font-weight:950;color:#fff;
+      border:1px solid rgba(255,255,255,.18)
+    }
+    .ps-card .code-strip{
+      position:absolute;left:20%;right:20%;bottom:0;height:25px;
+      background:#f7f7f3;color:#154aa2;display:grid;place-items:center;
+      font-size:10px;font-weight:950;letter-spacing:.08em;text-transform:uppercase
+    }
+
+    /* Xbox card based on the supplied Microsoft/Xbox reference */
+    .gift-card.xbox-card{background:#107c10}
+    .xbox-card::before{
+      content:"";position:absolute;inset:-30% -20% 30% 35%;
+      background:radial-gradient(circle,rgba(255,255,255,.13),transparent 62%)
+    }
+    .xbox-card .ms-label{
+      position:absolute;left:18px;top:16px;display:flex;align-items:center;gap:7px;
+      font-size:11px;font-weight:800;color:#fff
+    }
+    .ms-window{display:grid;grid-template-columns:repeat(2,6px);grid-template-rows:repeat(2,6px);gap:2px}
+    .ms-window i{display:block;background:#fff}
+    .xbox-card .amount{
+      position:absolute;right:18px;top:15px;font-size:33px;line-height:.86;font-weight:950;letter-spacing:-.055em;text-align:right
+    }
+    .xbox-card .amount small{display:block;margin-top:6px;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+    .xbox-card .brand-logo{
+      position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);
+      width:115px;height:115px;display:grid;place-items:center
+    }
+    .xbox-card .brand-logo img{max-width:104px;max-height:104px;filter:brightness(0) invert(1) drop-shadow(0 12px 20px rgba(0,0,0,.18))}
+    .xbox-card .gift-title{
+      position:absolute;left:0;right:0;bottom:42px;text-align:center;
+      font-size:25px;font-weight:950;letter-spacing:-.03em
+    }
+    .xbox-card .gift-title::after{
+      content:"";display:block;width:34px;height:4px;margin:5px auto 0;background:#9bf00b;transform:skewX(-22deg)
+    }
+    .xbox-card .card-foot{
+      position:absolute;left:18px;right:18px;bottom:16px;text-align:center;
+      font-size:9px;color:rgba(255,255,255,.9)
+    }
+
+    .section-note{max-width:720px;margin:32px auto 0;text-align:center;color:#687286;font-size:12px;line-height:1.6}
+
+    .overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(2,4,8,.76);backdrop-filter:blur(18px)}
+    .overlay.open{display:flex}
+    .modal{
+      width:min(560px,100%);border:1px solid rgba(255,255,255,.11);border-radius:31px;
+      background:linear-gradient(180deg,#0e1423,#0b101d);
+      box-shadow:0 35px 110px rgba(0,0,0,.65),0 0 70px color-mix(in srgb,var(--accent) 10%,transparent);
+      overflow:hidden
+    }
+    .modal-inner{padding:32px}
+    .modal-icon{
+      width:94px;height:94px;border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;
+      background:linear-gradient(145deg,var(--accent2),var(--accent));
+      box-shadow:0 18px 45px color-mix(in srgb,var(--accent) 25%,transparent)
+    }
+    .modal-icon img{max-width:58px;max-height:58px;filter:brightness(0) invert(1)}
+    .modal h2{margin:0;text-align:center;font-size:29px;letter-spacing:-.04em}
+    .modal .sub{max-width:420px;margin:10px auto 26px;text-align:center;color:#919bad;line-height:1.55}
+    .field{display:flex;align-items:center;height:62px;padding:0 17px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:#141a28;transition:border-color .2s ease,box-shadow .2s ease}
+    .field:focus-within{border-color:color-mix(in srgb,var(--accent) 70%,white 10%);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent)}
+    .field input{width:100%;border:0;outline:0;background:transparent;color:white;font-size:18px;font-weight:750}
+    .lookup-status{display:flex;align-items:center;gap:10px;min-height:44px;color:#919bad;font-size:14px}
+    .spinner{width:18px;height:18px;border-radius:50%;border:3px solid rgba(255,255,255,.12);border-top-color:var(--accent);animation:spin .75s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .primary{width:100%;height:58px;border:0;border-radius:16px;background:linear-gradient(180deg,var(--accent2),var(--accent));color:white;font-weight:950;font-size:16px;box-shadow:0 14px 35px color-mix(in srgb,var(--accent) 18%,transparent);transition:transform .2s ease,filter .2s ease}
+    .primary:hover{transform:translateY(-2px);filter:brightness(1.06)}
+    .primary:disabled{opacity:.38;cursor:not-allowed;transform:none;filter:none}
+    .secondary{width:100%;height:48px;margin-top:10px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.04);color:#b3bbca;font-weight:850}
+
+    /* No random profile-picture assets. Account result is brand-only and text based. */
+    .account-result{
+      display:none;align-items:center;gap:13px;padding:14px;margin:0 0 16px;
+      border:1px solid color-mix(in srgb,var(--accent) 30%,rgba(255,255,255,.08));
+      border-radius:17px;background:color-mix(in srgb,var(--accent) 7%,#111725)
+    }
+    .account-result.show{display:flex}
+    .account-result .result-logo{
+      width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+      background:linear-gradient(145deg,var(--accent2),var(--accent))
+    }
+    .account-result .result-logo img{max-width:27px;max-height:27px;filter:brightness(0) invert(1)}
+    .account-result strong{display:block;font-size:15px}
+    .account-result span{display:block;margin-top:4px;color:#7e899b;font-size:12px}
+
+    .pay-card{padding:18px;border:1px solid rgba(255,255,255,.09);border-radius:19px;background:linear-gradient(145deg,#171d2b,#101521);margin-bottom:16px}
+    .pay-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+    .visa{padding:10px 13px;border-radius:10px;background:#172892;color:#fff;font-size:21px;font-style:italic;font-weight:950;letter-spacing:-.06em}
+    .pay-name{font-size:13px;color:#aab2c1}.pay-name strong{display:block;color:#fff;font-size:15px;margin-top:4px}
+    .pay-row{display:flex;justify-content:space-between;gap:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07);color:#8e98aa;font-size:13px}.pay-row strong{color:#fff}
+
+    .loading-stage{text-align:center;padding:6px 0 2px}
+    .success-icon{
+      position:relative;
+      width:96px;
+      height:96px;
+      margin:0 auto 23px;
+      border-radius:26px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,var(--accent2),var(--accent));
+      box-shadow:0 20px 50px color-mix(in srgb,var(--accent) 22%,transparent);
+      font-size:52px;
+      font-weight:300;
+      animation:successPop .72s var(--ease) both;
+      transform-origin:center;
+    }
+    .success-icon::before{
+      content:"";
+      position:absolute;
+      inset:-10px;
+      border:2px solid color-mix(in srgb,var(--accent) 58%,white 18%);
+      border-radius:34px;
+      pointer-events:none;
+      animation:successRing .9s .08s ease-out both;
+    }
+    .success-icon .success-tick{
+      display:block;
+      line-height:1;
+      animation:successTickDraw .52s .2s var(--ease) both;
+      text-shadow:0 6px 18px rgba(0,0,0,.16);
+    }
+    .success-meta{margin:20px 0;padding:16px;border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(255,255,255,.025);color:#929cad;font-size:13px;line-height:1.8;text-align:center}.success-meta strong{color:#fff}
+
+    @media(max-width:760px){
+      .shell{width:min(100% - 20px,1240px);padding-top:10px}
+      .topbar{padding:11px 12px}.status span{display:none}
+      .hero{padding:58px 0 28px}.hero p{font-size:14px}
+      .cards{gap:16px}.gift-card{flex-basis:min(336px,100%);border-radius:21px}
+      .modal-inner{padding:24px 20px}.modal h2{font-size:26px}.overlay{padding:10px}.modal{border-radius:25px}
+    }
+  
+    /* Stronger, reliable animations */
+    @keyframes pageDrop{
+      from{opacity:0;transform:translateY(-18px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes heroIn{
+      from{opacity:0;transform:translateY(28px) scale(.985)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+    @keyframes cardEnter{
+      from{opacity:0;transform:translateY(36px) scale(.94)}
+      60%{opacity:1;transform:translateY(-5px) scale(1.015)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+    @keyframes cardShine{
+      0%{transform:translateX(-160%) skewX(-18deg)}
+      55%,100%{transform:translateX(260%) skewX(-18deg)}
+    }
+    @keyframes auraMove{
+      0%,100%{transform:translate3d(-5%,-3%,0) scale(1);opacity:.34}
+      50%{transform:translate3d(6%,4%,0) scale(1.13);opacity:.6}
+    }
+    @keyframes switchPop{
+      0%{transform:scale(.96);opacity:0}
+      70%{transform:scale(1.015);opacity:1}
+      100%{transform:scale(1)}
+    }
+    @keyframes modalFade{
+      from{opacity:0}
+      to{opacity:1}
+    }
+    @keyframes modalPop{
+      from{opacity:0;transform:translateY(24px) scale(.94)}
+      65%{opacity:1;transform:translateY(-4px) scale(1.012)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+    @keyframes resultPop{
+      from{opacity:0;transform:translateY(10px) scale(.96)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+    @keyframes iconFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-7px)}
+    }
+    @keyframes buttonSweep{
+      from{transform:translateX(-160%) skewX(-20deg)}
+      to{transform:translateX(280%) skewX(-20deg)}
+    }
+    @keyframes successPop{
+      0%{
+        opacity:0;
+        transform:translateY(18px) scale(.25) rotate(-18deg);
+        filter:blur(8px);
+      }
+      45%{
+        opacity:1;
+        transform:translateY(-5px) scale(1.16) rotate(4deg);
+        filter:blur(0);
+      }
+      72%{
+        transform:translateY(2px) scale(.94) rotate(-1.5deg);
+      }
+      100%{
+        opacity:1;
+        transform:translateY(0) scale(1) rotate(0);
+        filter:blur(0);
+      }
+    }
+
+    @keyframes successRing{
+      0%{opacity:.8;transform:scale(.5)}
+      70%{opacity:0;transform:scale(1.55)}
+      100%{opacity:0;transform:scale(1.75)}
+    }
+
+    @keyframes successTickDraw{
+      0%{opacity:0;transform:scale(.4) rotate(-12deg)}
+      58%{opacity:1;transform:scale(1.18) rotate(3deg)}
+      100%{opacity:1;transform:scale(1) rotate(0)}
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      z-index:0;
+      width:520px;
+      height:520px;
+      left:50%;
+      top:18%;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+      background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 68%);
+      filter:blur(50px);
+      pointer-events:none;
+      animation:auraMove 7s ease-in-out infinite;
+    }
+
+    .topbar{animation:pageDrop .7s var(--ease) both}
+    .hero{animation:heroIn .8s .08s var(--ease) both}
+    .platform-switch{animation:switchPop .65s .18s var(--ease) both}
+
+    .gift-card{
+      opacity:0;
+      animation:cardEnter .72s var(--ease) both;
+    }
+    .gift-card:nth-child(1){animation-delay:.08s}
+    .gift-card:nth-child(2){animation-delay:.16s}
+    .gift-card:nth-child(3){animation-delay:.24s}
+    .gift-card:nth-child(4){animation-delay:.32s}
+    .gift-card:nth-child(5){animation-delay:.40s}
+
+    .gift-card::before{
+      content:"";
+      position:absolute;
+      z-index:4;
+      top:-35%;
+      bottom:-35%;
+      width:30%;
+      left:-35%;
+      pointer-events:none;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+      transform:skewX(-18deg);
+      animation:cardShine 4.8s ease-in-out infinite;
+    }
+    .gift-card:nth-child(2)::before{animation-delay:.55s}
+    .gift-card:nth-child(3)::before{animation-delay:1.1s}
+    .gift-card:nth-child(4)::before{animation-delay:1.65s}
+    .gift-card:nth-child(5)::before{animation-delay:2.2s}
+
+    .overlay.open{animation:modalFade .22s ease both}
+    .overlay.open .modal{animation:modalPop .42s var(--ease) both}
+    .modal-icon{animation:iconFloat 2.8s ease-in-out infinite}
+    .account-result.show{animation:resultPop .34s var(--ease) both}
+
+    .primary{
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .primary::after{
+      content:"";
+      position:absolute;
+      z-index:-1;
+      top:-40%;
+      bottom:-40%;
+      left:-35%;
+      width:25%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+      animation:buttonSweep 3.6s ease-in-out infinite;
+    }
+
+
+    .account-avatar{
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      object-fit:cover;
+      flex:0 0 auto;
+      border:1px solid color-mix(in srgb,var(--accent) 38%,rgba(255,255,255,.12));
+      box-shadow:0 10px 24px rgba(0,0,0,.28),0 0 22px color-mix(in srgb,var(--accent) 15%,transparent);
+      background:#101725;
+    }
+
+    .microsoft-logo{
+      position:absolute;
+      left:18px;
+      top:-3px;
+      width:105px;
+      height:auto;
+      filter:grayscale(1) brightness(0) invert(1);
+      opacity:.98;
+      z-index:2;
+    }
+
+
+  
+    /* Final interaction polish */
+    .cards{position:relative}
+    .gift-card{
+      will-change:transform,box-shadow,filter;
+      -webkit-tap-highlight-color:transparent;
+      outline:none;
+    }
+    .gift-card .selected-badge{
+      position:absolute;
+      z-index:8;
+      left:14px;
+      bottom:14px;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:8px 11px;
+      border-radius:999px;
+      background:rgba(5,9,17,.84);
+      border:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      font-size:10px;
+      font-weight:950;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:0;
+      transform:translateY(8px) scale(.94);
+      transition:opacity .22s ease,transform .28s var(--ease);
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
+      pointer-events:none;
+    }
+    .gift-card .selected-badge i{
+      width:16px;height:16px;border-radius:50%;display:grid;place-items:center;
+      background:var(--accent);color:#fff;font-style:normal;font-size:11px;
+      box-shadow:0 0 16px color-mix(in srgb,var(--accent) 65%,transparent)
+    }
+    .gift-card.selected{
+      z-index:10;
+      transform:translateY(-10px) scale(1.035)!important;
+      filter:saturate(1.08) brightness(1.04);
+      box-shadow:
+        0 40px 90px rgba(0,0,0,.58),
+        0 0 0 3px rgba(255,255,255,.88),
+        0 0 0 8px color-mix(in srgb,var(--accent) 30%,transparent),
+        0 0 70px color-mix(in srgb,var(--accent) 34%,transparent)!important;
+    }
+    .gift-card.selected .selected-badge{opacity:1;transform:translateY(0) scale(1)}
+    .gift-card.selecting{animation:selectPulse .58s var(--ease) both!important}
+    @keyframes selectPulse{
+      0%{transform:translateY(-3px) scale(1)}
+      30%{transform:translateY(2px) scale(.965)}
+      68%{transform:translateY(-12px) scale(1.055)}
+      100%{transform:translateY(-10px) scale(1.035)}
+    }
+    .gift-card .click-ripple{
+      position:absolute;z-index:7;width:18px;height:18px;border-radius:50%;
+      transform:translate(-50%,-50%) scale(0);
+      background:rgba(255,255,255,.48);
+      pointer-events:none;
+      animation:rippleOut .66s ease-out forwards;
+      mix-blend-mode:screen;
+    }
+    @keyframes rippleOut{
+      to{transform:translate(-50%,-50%) scale(18);opacity:0}
+    }
+    .custom-amount-wrap{
+      display:flex;
+      justify-content:center;
+      margin:28px auto 0;
+    }
+    .custom-amount-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      min-height:42px;
+      padding:0 18px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      background:rgba(255,255,255,.045);
+      color:#c4ccda;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.02em;
+      box-shadow:inset 0 1px rgba(255,255,255,.05),0 12px 30px rgba(0,0,0,.18);
+      transition:transform .22s var(--ease),border-color .22s ease,color .22s ease,background .22s ease,box-shadow .22s ease;
+    }
+    .custom-amount-button::before{
+      content:"+";
+      width:21px;
+      height:21px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 21px;
+      padding:0;
+      border-radius:50%;
+      background:color-mix(in srgb,var(--accent) 18%,rgba(255,255,255,.05));
+      border:1px solid color-mix(in srgb,var(--accent) 38%,rgba(255,255,255,.08));
+      color:#fff;
+      font-family:Arial,Helvetica,sans-serif;
+      font-size:16px;
+      font-weight:900;
+      line-height:21px;
+      text-align:center;
+      transform:translateY(-.25px);
+      transition:transform .25s var(--ease),background .22s ease;
+    }
+    .custom-amount-button:hover{
+      transform:translateY(-2px);
+      color:#fff;
+      border-color:color-mix(in srgb,var(--accent) 52%,rgba(255,255,255,.15));
+      background:color-mix(in srgb,var(--accent) 9%,rgba(255,255,255,.04));
+      box-shadow:0 15px 34px rgba(0,0,0,.28),0 0 26px color-mix(in srgb,var(--accent) 12%,transparent);
+    }
+    .custom-amount-button:hover::before{transform:rotate(90deg);background:var(--accent)}
+    .custom-amount-button.active{
+      color:#fff;
+      border-color:rgba(255,255,255,.75);
+      background:color-mix(in srgb,var(--accent) 13%,rgba(255,255,255,.05));
+      box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent),0 18px 38px rgba(0,0,0,.3);
+    }
+
+    .custom-amount-shell{
+      max-width:400px;
+      margin:0 auto 20px;
+    }
+    .custom-amount-label{
+      display:block;
+      margin:0 0 9px;
+      color:#aeb7c7;
+      font-size:12px;
+      font-weight:850;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+    .custom-amount-field{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      min-height:68px;
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:18px;
+      background:#141a28;
+      overflow:hidden;
+      transition:border-color .22s ease,box-shadow .22s ease;
+    }
+    .custom-amount-field:focus-within{
+      border-color:color-mix(in srgb,var(--accent) 70%,white 10%);
+      box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent);
+    }
+    .custom-currency-prefix{
+      padding-left:18px;
+      color:#fff;
+      font-size:24px;
+      font-weight:950;
+      letter-spacing:-.04em;
+    }
+    .custom-amount-field input{
+      width:100%;
+      min-width:0;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:#fff;
+      padding:0 10px;
+      font-size:28px;
+      font-weight:950;
+      letter-spacing:-.04em;
+      appearance:textfield;
+      -moz-appearance:textfield;
+    }
+    .custom-amount-field input::-webkit-outer-spin-button,
+    .custom-amount-field input::-webkit-inner-spin-button{
+      margin:0;
+      -webkit-appearance:none;
+    }
+    .custom-currency-code{
+      padding-right:18px;
+      color:#788397;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.1em;
+    }
+    .custom-amount-help{
+      min-height:20px;
+      margin-top:9px;
+      color:#778296;
+      font-size:12px;
+      line-height:1.5;
+    }
+    .custom-amount-help.error{color:#ff7f88}
+
+.selection-note{
+      min-height:28px;
+      margin:30px auto 0;
+      text-align:center;
+      color:#788397;
+      font-size:12px;
+      line-height:1.6;
+      transition:color .25s ease,transform .25s ease;
+    }
+    .selection-note.active{
+      color:#dce8f7;
+      transform:translateY(-2px);
+    }
+    .selection-note strong{color:#fff}
+    .selection-dot{
+      display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:8px;
+      background:var(--accent);box-shadow:0 0 14px color-mix(in srgb,var(--accent) 75%,transparent)
+    }
+    .modal-inner.stage-swap{animation:stageSwap .18s var(--ease) both}
+    @keyframes stageSwap{
+      from{opacity:0;transform:translateY(10px) scale(.985)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+    .lookup-status.loading{color:#c8d0dd}
+    .loading-detail{
+      margin-top:8px;color:#717d90;font-size:12px;text-align:center;min-height:18px;
+      transition:opacity .2s ease
+    }
+    .gift-simple-spinner{width:58px;height:58px;margin:0 auto 20px;border:5px solid rgba(255,255,255,.11);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;box-shadow:0 0 22px color-mix(in srgb,var(--accent) 18%,transparent)}
+    .payment-progress-ring{position:relative;display:grid;place-items:center;width:82px;height:82px;margin:0 auto 20px}
+    .payment-progress-ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+    .payment-progress-ring circle{fill:none;stroke-width:7}
+    .payment-progress-track{stroke:rgba(255,255,255,.09)}
+    .payment-progress-meter{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:82;transition:stroke-dashoffset .24s var(--ease);filter:drop-shadow(0 0 7px color-mix(in srgb,var(--accent) 45%,transparent))}
+    .processing-summary{display:flex;align-items:center;justify-content:space-between;gap:14px;width:min(330px,100%);margin:16px auto 0;padding:11px 13px;border:1px solid rgba(255,255,255,.07);border-radius:13px;background:rgba(255,255,255,.025);text-align:left}
+    .processing-summary span{color:#7f899b;font-size:11px;font-weight:800}
+    .processing-summary strong{max-width:68%;overflow:hidden;color:#eef2f8;font-size:12px;text-overflow:ellipsis;white-space:nowrap}
+    .progress-line{
+      width:min(280px,78%);height:4px;margin:20px auto 0;border-radius:999px;
+      background:rgba(255,255,255,.08);overflow:hidden
+    }
+    .progress-line span{display:block;width:18%;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .24s var(--ease);box-shadow:0 0 12px color-mix(in srgb,var(--accent) 40%,transparent)}
+
+    /* Faster, tighter interactions for the checkout without removing feedback. */
+    .topbar{animation-duration:.38s}
+    .hero{animation-duration:.46s;animation-delay:.03s}
+    .platform-switch{animation-duration:.34s;animation-delay:.05s}
+    .gift-card{animation-duration:.4s}
+    .gift-card:nth-child(1){animation-delay:.03s}.gift-card:nth-child(2){animation-delay:.07s}.gift-card:nth-child(3){animation-delay:.11s}
+    .overlay.open{animation-duration:.12s}
+    .overlay.open .modal{animation-duration:.2s}
+    .account-result.show{animation-duration:.2s}
+    .gift-card.selecting{animation-duration:.3s!important}
+    .gift-card .click-ripple{animation-duration:.34s}
+    .primary,.secondary,.platform-switch button{transition-duration:.14s}
+
+  
+    .field.auto-pasting{
+      border-color:color-mix(in srgb,var(--accent) 68%,white 8%);
+      box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent),0 0 28px color-mix(in srgb,var(--accent) 12%,transparent);
+      animation:autoGiftPaste .42s var(--ease);
+    }
+    @keyframes autoGiftPaste{
+      0%{transform:scale(.993);filter:brightness(1)}
+      50%{transform:scale(1.008);filter:brightness(1.18)}
+      100%{transform:scale(1);filter:brightness(1)}
+    }
+
+  </style>
+  <link rel="stylesheet" href="/auto-gift-universal.css?v=33">
+<link rel="stylesheet" href="/mobile-polish.css?v=24-polished-2">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark"></span> Gift Card</div>
+      <div class="status"><i></i><span>PlayStation & Xbox</span></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Gift Cards</div>
+        <h1>Top up their <span class="platform-word">PlayStation</span></h1>
+        <p>Choose a gift card value, enter the recipient account, and continue with your saved payment method.</p>
+      </section>
+
+      <div class="switch-wrap">
+        <div class="platform-switch" role="tablist" aria-label="Choose platform">
+          <button class="active" id="psTab" type="button">PlayStation</button>
+          <button id="xboxTab" type="button">Xbox</button>
+        </div>
+      </div>
+
+      <section class="cards" id="cards" aria-label="Gift card amounts"></section>
+      <div class="custom-amount-wrap">
+        <button class="custom-amount-button" id="customAmountButton" type="button">Enter a custom amount</button>
+      </div>
+      <div class="selection-note" id="selectionNote">Choose a gift card to continue.</div>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-inner" id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="/global-settings.js"></script>
+  <script>
+    const amounts=[25,50,100];
+    const avatars=window.LVAvatarPools?.all||{ps:['/assets/avatars/ps-avatar-02.webp'],xbox:['/assets/avatars/xbox-avatar-01.webp']};
+    const state={platform:'ps',amount:25,username:'',hasSelectedAmount:false};
+    const cfg={
+      ps:{name:'PlayStation',account:'PSN Online ID',logo:'assets/playstation-logo.png'},
+      xbox:{name:'Xbox',account:'Xbox Gamertag',logo:'assets/xbox-logo.png'}
+    };
+    const cards=document.getElementById('cards');
+    const overlay=document.getElementById('overlay');
+    const modalContent=document.getElementById('modalContent');
+    const platformWord=document.querySelector('.platform-word');
+    const psTab=document.getElementById('psTab');
+    const xboxTab=document.getElementById('xboxTab');
+    const selectionNote=document.getElementById('selectionNote');
+    const customAmountButton=document.getElementById('customAmountButton');
+
+    const escapeHtml=s=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    const random=(min,max)=>Math.floor(Math.random()*(max-min+1))+min;
+    const orderNo=()=>`${random(1000,9999)}-${random(1000,9999)}-${random(1000,9999)}`;
+    const emailFor=name=>`${name.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,14)||'customer'}${random(10,999)}@gmail.com`;
+    const settings=()=>window.LVGlobalSettings?.load?.()||{username:'tiktok lachbtw',paymentName:'Thomas Smith',currency:'USD'};
+    const currencyMeta={
+      USD:{code:'USD',symbol:'$',prefix:'$'},
+      NZD:{code:'NZD',symbol:'NZ$',prefix:'NZ$'},
+      AUD:{code:'AUD',symbol:'A$',prefix:'A$'},
+      GBP:{code:'GBP',symbol:'£',prefix:'£'}
+    };
+    const currentCurrency=()=>{const code=String(settings().currency||'USD').toUpperCase();return currencyMeta[code]||currencyMeta.USD};
+    const money=(amount,decimals=false)=>{const c=currentCurrency();return `${c.prefix}${Number(amount).toFixed(decimals?2:0)}`};
+    const delay=(min,max,kind='loading')=>window.LVRuntime?.delay(min,max,kind)??random(min,max);
+    const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+// Auto Gift is controlled by the shared unattended product controller.
+    const autoGift=Object.freeze({
+      isEnabled:()=>false,
+      setEnabled:()=>{},
+      onRecipientReady:()=>{},
+      onPaymentReady:()=>{},
+      onSuccess:()=>{},
+      onAmountSelected:()=>{},
+      onSelectionReset:()=>{}
+    });
+
+function renderCards(){
+      const c=cfg[state.platform];
+      const cur=currentCurrency();
+      cards.innerHTML=amounts.map(amount=>{
+        if(state.platform==='ps'){
+          return `<button class="gift-card ps-card" type="button" data-amount="${amount}" aria-label="PlayStation ${money(amount)} ${cur.code} gift card">
+            <div class="ps-head">
+              <div class="gift-label">GIFT CARD</div>
+              <div class="amount">${money(amount)}<small>${cur.code}</small></div>
+            </div>
+            <div class="brand-logo"><img src="${c.logo}" alt="PlayStation"  decoding="async"/></div>
+            <div class="code-strip">Digital Code</div>
+            <div class="selected-badge"><i>✓</i>Selected</div>
+          </button>`;
+        }
+        return `<button class="gift-card xbox-card" type="button" data-amount="${amount}" aria-label="Xbox ${money(amount)} ${cur.code} gift card">
+          <img class="microsoft-logo" src="assets/microsoft-logo.png" alt="Microsoft"  decoding="async"/>
+          <div class="amount">${money(amount)}<small>${cur.code}</small></div>
+          <div class="brand-logo"><img src="${c.logo}" alt="Xbox"  decoding="async" loading="lazy"/></div>
+          <div class="gift-title">GIFT CARD</div>
+          <div class="card-foot">Buy Xbox games, add-ons, Game Pass, and more*</div>
+          <div class="selected-badge"><i>✓</i>Selected</div>
+        </button>`;
+      }).join('');
+      cards.querySelectorAll('.gift-card').forEach(card=>{
+        card.addEventListener('click',async e=>{
+          if(card.dataset.busy==='1') return;
+          cards.querySelectorAll('.gift-card').forEach(c=>{
+            c.classList.remove('selected','selecting');
+            c.dataset.busy='0';
+            c.setAttribute('aria-pressed','false');
+          });
+
+          card.dataset.busy='1';
+          card.classList.add('selected','selecting');
+          card.setAttribute('aria-pressed','true');
+
+          const rect=card.getBoundingClientRect();
+          const ripple=document.createElement('span');
+          ripple.className='click-ripple';
+          ripple.style.left=`${e.clientX ? e.clientX-rect.left : rect.width/2}px`;
+          ripple.style.top=`${e.clientY ? e.clientY-rect.top : rect.height/2}px`;
+          card.appendChild(ripple);
+          setTimeout(()=>ripple.remove(),720);
+
+          state.amount=Number(card.dataset.amount);
+          state.username='';
+          state.hasSelectedAmount=true;
+          autoGift.onAmountSelected();
+          selectionNote.classList.add('active');
+          selectionNote.innerHTML=`<span class="selection-dot"></span><strong>${money(state.amount)} ${cfg[state.platform].name}</strong> gift card selected`;
+
+          await sleep(delay(220,360));
+          card.classList.remove('selecting');
+          openRecipient();
+        });
+      });
+    }
+
+    function resetGiftSelection(){
+      cards.querySelectorAll('.gift-card').forEach(card=>{
+        card.classList.remove('selected','selecting');
+        card.dataset.busy='0';
+        card.setAttribute('aria-pressed','false');
+      });
+      customAmountButton.classList.remove('active');
+      customAmountButton.disabled=false;
+      state.hasSelectedAmount=false;
+      autoGift.onSelectionReset();
+      selectionNote.classList.remove('active');
+      selectionNote.textContent='Choose a gift card to continue.';
+    }
+
+    function openCustomAmount(){
+      resetGiftSelection();
+      customAmountButton.classList.add('active');
+      const currency=currentCurrency();
+
+      modalContent.classList.remove('stage-swap');
+      void modalContent.offsetWidth;
+      modalContent.classList.add('stage-swap');
+      modalContent.innerHTML=`
+        <div class="modal-icon"><img src="${cfg[state.platform].logo}" alt="" decoding="async" loading="lazy"></div>
+        <h2>Enter a custom amount</h2>
+        <p class="sub">Choose a custom ${cfg[state.platform].name} gift-card value.</p>
+
+        <div class="custom-amount-shell">
+          <label class="custom-amount-label" for="customAmountInput">Gift-card amount</label>
+          <div class="custom-amount-field">
+            <span class="custom-currency-prefix">${currency.prefix}</span>
+            <input id="customAmountInput" type="number" inputmode="numeric" min="1" max="500" step="1" placeholder="Enter amount" autocomplete="off">
+            <span class="custom-currency-code">${currency.code}</span>
+          </div>
+          <div class="custom-amount-help" id="customAmountHelp">Enter a whole amount from ${currency.prefix}1 to ${currency.prefix}500.</div>
+        </div>
+
+        <button class="primary" id="customAmountContinue" disabled>Continue</button>
+        <button class="secondary" id="customAmountCancel">Cancel</button>`;
+
+      showOverlay();
+
+      const input=document.getElementById('customAmountInput');
+      const help=document.getElementById('customAmountHelp');
+      const continueButton=document.getElementById('customAmountContinue');
+      const cancelButton=document.getElementById('customAmountCancel');
+
+      function validateCustomAmount(){
+        const raw=input.value.trim();
+        const amount=Number(raw);
+        const isWhole=Number.isInteger(amount);
+        const valid=raw!=='' && Number.isFinite(amount) && isWhole && amount>=1 && amount<=500;
+
+        help.classList.toggle('error',raw!=='' && !valid);
+        if(raw==='' || valid){
+          help.textContent=valid
+            ? `${money(amount)} ${currency.code} gift card`
+            : `Enter a whole amount from ${currency.prefix}1 to ${currency.prefix}500.`;
+        }else{
+          help.textContent=`Enter a whole amount between ${currency.prefix}1 and ${currency.prefix}500.`;
+        }
+
+        continueButton.disabled=!valid;
+        return valid ? amount : null;
+      }
+
+      input.addEventListener('input',validateCustomAmount);
+      input.addEventListener('keydown',event=>{
+        if(event.key==='Enter' && !continueButton.disabled){
+          continueButton.click();
+        }
+      });
+
+      continueButton.onclick=async()=>{
+        const amount=validateCustomAmount();
+        if(amount===null) return;
+
+        state.amount=amount;
+        state.username='';
+        state.hasSelectedAmount=true;
+        autoGift.onAmountSelected();
+        customAmountButton.classList.add('active');
+        selectionNote.classList.add('active');
+        selectionNote.innerHTML=`<span class="selection-dot"></span><strong>${money(amount)} ${cfg[state.platform].name}</strong> custom gift card selected`;
+
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+
+        await sleep(220);
+        openRecipient();
+      };
+
+      cancelButton.onclick=closeOverlay;
+      setTimeout(()=>input.focus(),120);
+    }
+
+    customAmountButton.addEventListener('click',openCustomAmount);
+
+    function setPlatform(platform){
+      state.platform=platform;
+      state.username='';
+      document.body.classList.toggle('xbox',platform==='xbox');
+      psTab.classList.toggle('active',platform==='ps');
+      xboxTab.classList.toggle('active',platform==='xbox');
+      platformWord.textContent=cfg[platform].name;
+      resetGiftSelection();
+      renderCards();
+    }
+    psTab.addEventListener('click',()=>setPlatform('ps'));
+    xboxTab.addEventListener('click',()=>setPlatform('xbox'));
+
+    function showOverlay(){
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function closeOverlay(){
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+      state.username='';
+      resetGiftSelection();
+    }
+    overlay.addEventListener('click',e=>{if(e.target===overlay)closeOverlay()});
+
+    function openRecipient(){
+      const c=cfg[state.platform];
+      state.username='';
+      modalContent.classList.remove('stage-swap');
+      void modalContent.offsetWidth;
+      modalContent.classList.add('stage-swap');
+      modalContent.innerHTML=`
+        <div class="modal-icon"><img src="${c.logo}" alt=""  decoding="async" loading="lazy"/></div>
+        <h2>Who’s this gift for?</h2>
+        <p class="sub">Search their ${c.account} to continue with the ${money(state.amount)} ${currentCurrency().code} gift card.</p>
+        <div class="field"><input id="recipientInput" autocomplete="off" placeholder="Enter ${c.account}" value=""></div>
+        <div class="lookup-status" id="lookupStatus">Enter a ${c.account} to continue.</div>
+        <div class="account-result" id="accountResult"></div>
+        <button class="primary" id="continueBtn" disabled>Continue to payment</button>
+        <button class="secondary" id="cancelBtn">Cancel</button>`;
+      showOverlay();
+
+      const input=document.getElementById('recipientInput');
+      const status=document.getElementById('lookupStatus');
+      const result=document.getElementById('accountResult');
+      const btn=document.getElementById('continueBtn');
+      document.getElementById('cancelBtn').onclick=closeOverlay;
+
+      let debounceTimer=null;
+      let lookupTimer=null;
+      let verifyTimer=null;
+      let lookupToken=0;
+
+      function clearLookupTimers(){
+        clearTimeout(debounceTimer);
+        clearTimeout(lookupTimer);
+        clearTimeout(verifyTimer);
+      }
+
+      function lookup(){
+        clearLookupTimers();
+        const token=++lookupToken;
+        state.username='';
+        status.classList.remove('loading');
+        result.classList.remove('show');
+        result.innerHTML='';
+        btn.disabled=true;
+
+        const val=input.value.trim();
+        if(!val){
+          status.textContent=`Enter a ${c.account} to continue.`;
+          return;
+        }
+        if(state.platform==='ps' && /\s/.test(val)){
+          status.textContent='PSN Online IDs cannot contain spaces.';
+          return;
+        }
+
+        // Wait until the user has paused typing before starting the lookup.
+        // This prevents accidental partial usernames from being fetched.
+        status.textContent='Waiting for you to finish typing…';
+        const typingPause=delay(220,380);
+
+        debounceTimer=setTimeout(()=>{
+          if(token!==lookupToken) return;
+          const requestedValue=input.value.trim();
+          if(requestedValue!==val) return;
+
+          status.classList.add('loading');
+          status.innerHTML='<span class="spinner"></span> Checking account…';
+
+          const lookupDelay=delay(480,820,'lookup');
+          verifyTimer=setTimeout(()=>{
+            if(token!==lookupToken || input.value.trim()!==val) return;
+            status.innerHTML='<span class="spinner"></span> Verifying account…';
+          },Math.min(380,Math.max(210,lookupDelay*.52)));
+
+          lookupTimer=setTimeout(()=>{
+            if(token!==lookupToken || input.value.trim()!==val) return;
+
+            state.username=val;
+            status.classList.remove('loading');
+            status.textContent='Account found';
+            const avatar=window.LVAvatarPools?.random(state.platform)||avatars[state.platform][0];
+            result.innerHTML=`
+              <img class="account-avatar" src="${avatar}" alt="" decoding="async" loading="lazy">
+              <div><strong>${escapeHtml(val)}</strong><span>${c.account} found</span></div>`;
+            result.classList.add('show');
+            btn.disabled=false;
+          },lookupDelay);
+        },typingPause);
+      }
+
+      input.addEventListener('input',lookup);
+      btn.onclick=openPayment;
+      input.focus();
+      autoGift.onRecipientReady(input,btn);
+    }
+
+    function openPayment(){
+      const c=cfg[state.platform];
+      const s=settings();
+      modalContent.classList.remove('stage-swap'); void modalContent.offsetWidth; modalContent.classList.add('stage-swap');
+      modalContent.innerHTML=`
+        <div class="modal-icon"><img src="${c.logo}" alt=""  decoding="async" loading="lazy"/></div>
+        <h2>Confirm payment</h2>
+        <p class="sub">Send a ${money(state.amount)} ${currentCurrency().code} ${c.name} gift card to <strong>${escapeHtml(state.username)}</strong>.</p>
+        <div class="pay-card">
+          <div class="pay-head">
+            <div class="visa">VISA</div>
+            <div class="pay-name">Saved card<strong>${escapeHtml(s.paymentName||'Thomas Smith')}</strong></div>
+          </div>
+          <div class="pay-row"><span>Card</span><strong>•••• •••• •••• 4242</strong></div>
+          <div class="pay-row"><span>Sender</span><strong>${escapeHtml(s.username||'tiktok lachbtw')}</strong></div>
+          <div class="pay-row"><span>Total</span><strong>${money(state.amount,true)} ${currentCurrency().code}</strong></div>
+        </div>
+        <button class="primary" id="payBtn">Confirm ${money(state.amount)} payment</button>
+        <button class="secondary" id="backBtn">Back</button>`;
+      document.getElementById('backBtn').onclick=openRecipient;
+      const payButton=document.getElementById('payBtn');
+      payButton.onclick=confirming;
+      autoGift.onPaymentReady(payButton);
+    }
+
+    async function confirming(){
+      const c=cfg[state.platform];
+      modalContent.classList.remove('stage-swap'); void modalContent.offsetWidth; modalContent.classList.add('stage-swap');
+      modalContent.innerHTML=`
+        <div class="loading-stage" aria-live="polite">
+          <div class="gift-simple-spinner" role="status" aria-label="Processing payment"></div>
+          <h2 id="paymentTitle">Authorizing payment</h2>
+          <p class="sub" id="paymentDetail">Checking Visa •••• 4242…</p>
+          <div class="loading-detail" id="loadingDetail">Connecting securely…</div>
+          <div class="processing-summary"><span>${c.name} gift card</span><strong>${money(state.amount)} · ${escapeHtml(state.username)}</strong></div>
+        </div>`;
+
+      const total=delay(900,1450);
+      const detail=document.getElementById('loadingDetail');
+      const paymentDetail=document.getElementById('paymentDetail');
+      const title=document.getElementById('paymentTitle');
+      const ring=document.getElementById('paymentProgressRing');
+      const meter=document.getElementById('paymentProgressMeter');
+      const value=document.getElementById('paymentProgressValue');
+      const bar=document.getElementById('paymentProgressBar');
+      const updateProgress=(progress,heading,status,copy)=>{
+        ring?.setAttribute('aria-valuenow',String(progress));
+        if(meter) meter.style.strokeDashoffset=String(100-progress);
+        if(value) value.textContent=`${progress}%`;
+        if(bar) bar.style.width=`${progress}%`;
+        if(title) title.textContent=heading;
+        if(detail) detail.textContent=status;
+        if(paymentDetail) paymentDetail.textContent=copy;
+      };
+      const firstStage=Math.round(total*.31);
+      const secondStage=Math.round(total*.66);
+      await sleep(firstStage);
+      updateProgress(52,'Verifying payment','Saved Visa confirmed',`Checking ${c.name} delivery details…`);
+      await sleep(secondStage-firstStage);
+      updateProgress(82,'Confirming recipient','Recipient is eligible',`Preparing the ${money(state.amount)} gift card for ${escapeHtml(state.username)}…`);
+      await sleep(total-secondStage);
+      updateProgress(100,'Payment approved','Confirmation ready','Creating your receipt…');
+      await sleep(100);
+      success();
+    }
+
+    function success(){
+      modalContent.classList.remove('stage-swap'); void modalContent.offsetWidth; modalContent.classList.add('stage-swap');
+      const c=cfg[state.platform];
+      const order=orderNo();
+      const email=emailFor(state.username);
+      modalContent.innerHTML=`
+        <div class="success-icon"><span class="success-tick">✓</span></div>
+        <h2>${money(state.amount)} sent</h2>
+        <p class="sub">${c.name} store credit is on its way to <strong>${escapeHtml(state.username)}</strong>’s account.</p>
+        <div class="success-meta">
+          Order <strong>#${order}</strong><br>
+          Invoice <strong>#${order}-${random(1000,9999)}</strong><br>
+          Sent to <strong>${email}</strong><br>
+          Purchased by <strong>${escapeHtml(settings().username||'tiktok lachbtw')}</strong>
+        </div>
+        <button class="primary" id="doneBtn">Done</button>`;
+      document.getElementById('doneBtn').onclick=closeOverlay;
+      autoGift.onSuccess();
+    }
+
+    renderCards();
+    window.addEventListener('lv-settings-updated', renderCards);
+    window.addEventListener('storage', (event)=>{ if(event.key==='lv_global_settings') renderCards(); });
+    window.addEventListener('pageshow', renderCards);
+  </script>
+  <script src="/auto-gift-universal.js?v=33"></script>
+  <script src="/auth-watch.js"></script>
+  <script src="/back-to-visuals.js"></script>
+  <script src="/guard.js"></script>
+</body>
+</html>

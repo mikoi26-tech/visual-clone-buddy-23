@@ -1,0 +1,43 @@
+:root{--cash:#00d632;--cash-deep:#004f28;--cash-black:#050706;--ios-spring:cubic-bezier(.32,.72,0,1)}
+html,body{width:100%;min-height:100%;overflow:auto!important;background:#06100a!important}
+body{margin:0!important;max-width:none!important;padding:0!important;color-scheme:dark;display:block!important;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
+button,input{font:inherit}
+.visual-backdrop{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(circle at 20% 14%,rgba(0,255,113,.30),transparent 31%),radial-gradient(circle at 82% 72%,rgba(20,188,93,.24),transparent 35%),radial-gradient(circle at 53% 112%,rgba(69,255,158,.13),transparent 36%),linear-gradient(145deg,#031308 0%,#071d11 44%,#020604 100%);transition:background .42s ease}
+.visual-backdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(80,255,161,.04),transparent 68%);mix-blend-mode:screen}
+.visual-backdrop>i{background:linear-gradient(90deg,transparent,rgba(75,255,152,.18),rgba(238,255,245,.98))!important;filter:drop-shadow(0 0 var(--shoot-glow,6px) rgba(64,255,146,.72))!important}
+.visual-backdrop>i:after{box-shadow:0 0 8px #dcffeb,0 0 18px rgba(0,255,111,.75)!important}
+body[data-backdrop="black"] .visual-backdrop{background:#000}
+body[data-backdrop="white"] .visual-backdrop{background:#f4fff7}
+.backdrop-picker{position:fixed;right:18px;top:18px;z-index:40;display:flex;align-items:center;gap:4px;padding:6px;border:1px solid rgba(153,255,193,.17);border-radius:15px;background:rgba(3,14,8,.76);box-shadow:0 14px 40px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.045);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:border-color .2s ease,background .2s ease,box-shadow .2s ease}
+.backdrop-picker:hover{border-color:rgba(153,255,193,.26);background:rgba(3,14,8,.84);box-shadow:0 16px 44px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.06)}
+.backdrop-picker span{padding:0 7px;color:#88aa94;font-size:9px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.backdrop-picker button{height:32px;padding:0 11px;border:0;border-radius:10px;outline:0;background:transparent;color:#8eaa98;font-size:10px;font-weight:750;cursor:pointer;transition:color .16s ease,background .16s ease,transform .16s ease,box-shadow .16s ease}
+.backdrop-picker button:hover,.backdrop-picker button:focus-visible{color:#d9ffe7;background:rgba(255,255,255,.065)}
+.backdrop-picker button:focus-visible{box-shadow:0 0 0 2px rgba(0,214,50,.52)}
+.backdrop-picker button:active{transform:scale(.96)}
+.backdrop-picker button.active{background:#eafff1;color:#062410;box-shadow:0 5px 18px rgba(0,214,50,.14)}
+.device-stage{position:relative;z-index:2;width:100%;min-height:100dvh;padding:clamp(18px,3vh,34px) 20px;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.iphone-shell{position:relative;width:min(430px,calc(100vw - 28px),calc(46.0251dvh - 16.57px));height:auto;aspect-ratio:1320 / 2868;padding:10px;border:2px solid #292b2e;border-radius:61px;background:#050607;box-shadow:0 0 0 3px #08090a,0 24px 62px rgba(0,0,0,.52),inset 0 0 0 1px #17191b;box-sizing:border-box}
+.iphone-shell:before,.iphone-shell:after{display:none}
+.iphone-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:49px;background:#000;box-shadow:0 0 0 1px #0d0e10;isolation:isolate}
+#root{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;background:#000}
+#root>div{width:100%!important;max-width:none!important;height:100%!important;max-height:none!important;margin:0!important}
+#root>div[style*="position: fixed"],#root div[style*="position: fixed"][style*="max-width: 430"]{position:absolute!important;max-width:none!important}
+.cash-home-indicator{position:absolute;left:50%;bottom:8px;z-index:1200;width:134px;height:5px;border-radius:99px;background:rgba(255,255,255,.88);transform:translateX(-50%);pointer-events:none;mix-blend-mode:difference}
+.cash-dynamic-island{position:absolute;left:50%;top:10px;z-index:850;width:126px;height:37px;padding:0;border:0;border-radius:999px;background:radial-gradient(120% 170% at 50% -45%,#202421 0%,#050706 54%,#000 100%);box-shadow:0 5px 14px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.08);transform:translateX(-50%);overflow:hidden;cursor:pointer;transition:width .5s var(--ios-spring),height .5s var(--ios-spring),border-radius .45s var(--ios-spring),box-shadow .3s ease}
+.cash-dynamic-island:focus-visible{outline:2px solid rgba(0,214,50,.72);outline-offset:2px}
+.cash-dynamic-island.open{width:calc(100% - 32px);height:92px;border-radius:34px;box-shadow:0 16px 34px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.08)}
+.cash-island-camera{position:absolute;right:17px;top:14px;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 32%,#284d67 0 18%,#080a09 45% 100%);opacity:.76;transition:opacity .16s}
+.cash-dynamic-island.open .cash-island-camera{opacity:0}
+.cash-island-live{position:absolute;inset:0;display:flex;align-items:center;gap:12px;padding:14px 17px;color:#fff;opacity:0;transform:scale(.94);transition:opacity .18s ease,transform .4s var(--ios-spring);pointer-events:none}
+.cash-dynamic-island.open .cash-island-live{opacity:1;transform:scale(1)}
+.cash-island-icon{width:42px;height:42px;border-radius:12px;box-shadow:0 3px 12px rgba(0,214,50,.28)}
+.cash-island-copy{min-width:0;text-align:left;line-height:1.1}.cash-island-copy strong{display:block;font-size:13px}.cash-island-copy span{display:block;margin-top:4px;color:#9aa19c;font-size:11px}
+.cash-island-pulse{margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--cash);box-shadow:0 0 16px rgba(0,214,50,.9);animation:cashIslandPulse 1.3s ease-in-out infinite}
+@keyframes cashIslandPulse{50%{transform:scale(.65);opacity:.55}}
+#root [style*="animation: spin"]{will-change:transform}
+#root button{touch-action:manipulation}
+body #lvBackToVisuals{right:18px!important;bottom:18px!important;border-color:rgba(107,255,165,.18)!important;background:rgba(3,14,8,.86)!important;box-shadow:0 14px 40px rgba(0,0,0,.32),0 0 26px rgba(0,214,50,.09)!important}
+@media(max-width:700px){.backdrop-picker{right:8px;top:6px;gap:2px;padding:4px;border-radius:11px;transform:none}.backdrop-picker span{display:none}.backdrop-picker button{height:28px;padding:0 7px;border-radius:8px;font-size:8px}.device-stage{padding:42px 4px 4px}.iphone-shell{width:min(calc(100vw - 8px),calc(46.0251dvh - 21.17px));height:auto;aspect-ratio:1320 / 2868;padding:6px;border:1px solid #292b2e;border-radius:42px;background:#050607;box-shadow:0 0 0 2px #08090a,0 12px 34px rgba(0,0,0,.46),inset 0 0 0 1px #17191b}.iphone-screen{border-radius:35px;box-shadow:0 0 0 1px #0d0e10}.cash-dynamic-island{top:10px}body #lvBackToVisuals{left:auto!important;right:12px!important;top:auto!important;bottom:12px!important;width:42px!important;min-width:42px!important;min-height:42px!important;padding:0!important;border-radius:14px!important;font-size:9px!important}body #lvBackToVisuals:hover,body #lvBackToVisuals:focus-visible{width:148px!important;padding:0 12px!important}}
+@media(max-width:360px){.backdrop-picker button{padding:0 5px;font-size:7px}body #lvBackToVisuals{padding:0 8px!important;font-size:8px!important}}
+@media(max-height:720px) and (min-width:701px){.device-stage{padding:8px}.iphone-shell{width:min(430px,calc(100vw - 16px),calc(46.0251dvh - 7.36px));height:auto;aspect-ratio:1320 / 2868;padding:8px;border-radius:46px}.iphone-screen{border-radius:37px}}
