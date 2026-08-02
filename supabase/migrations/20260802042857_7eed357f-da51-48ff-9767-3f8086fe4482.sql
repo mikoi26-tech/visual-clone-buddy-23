@@ -1,0 +1,1 @@
+UPDATE public.access_keys SET device_id = NULL, redeemed_at = NULL WHERE key = 'TRYHARD-7QK4M-2ZP9X-VD6TR-B1N8W';

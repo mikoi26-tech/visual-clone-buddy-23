@@ -9,7 +9,7 @@ function randomKey() {
       crypto.getRandomValues(new Uint8Array(5)),
       (n) => alphabet[n % alphabet.length],
     ).join("");
-  return `LACHY-${block()}-${block()}-${block()}-${block()}`;
+  return `TRYHARD-${block()}-${block()}-${block()}-${block()}`;
 }
 
 async function requireAdmin() {

@@ -1,0 +1,1 @@
+UPDATE public.access_keys SET key = 'TRYHARD-' || substring(key from 7) WHERE key LIKE 'LACHY-%';

@@ -289,7 +289,7 @@
     panel.setAttribute('aria-label', 'Visual settings');
     panel.innerHTML = `
       <div class="lv-settings-head">
-        <div class="lv-settings-head-copy"><div class="lv-settings-kicker">Lachy's Visuals</div><h2>Settings</h2></div>
+        <div class="lv-settings-head-copy"><div class="lv-settings-kicker">Tryhard Visuals</div><h2>Settings</h2></div>
         <button class="lv-settings-close" id="lvSettingsClose" type="button" aria-label="Close settings">×</button>
       </div>
       <div class="lv-settings-tabs" role="tablist" aria-label="Settings sections">

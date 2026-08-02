@@ -5,14 +5,14 @@ import { lvMarkup } from "@/content/lv-markup";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Member Access | Lachy's Visuals" },
+      { title: "Member Access | Tryhard Visuals" },
       {
         name: "description",
         content:
-          "Unlock the complete Lachy's Visuals interactive collection with one lifetime access key.",
+          "Unlock the complete Tryhard Visuals interactive collection with one lifetime access key.",
       },
       { name: "theme-color", content: "#000000" },
-      { property: "og:title", content: "Member Access | Lachy's Visuals" },
+      { property: "og:title", content: "Member Access | Tryhard Visuals" },
       {
         property: "og:description",
         content:

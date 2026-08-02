@@ -7,10 +7,10 @@ export const Route = createFileRoute("/2k27")({
   loader: () => requireUnlocked(),
   head: () => ({
     meta: [
-      { title: "NBA 2K27 Visual | Lachy's Visuals" },
-      { name: "description", content: "The NBA 2K27 edition visual experience from Lachy's Visuals." },
-      { property: "og:title", content: "NBA 2K27 Visual | Lachy's Visuals" },
-      { property: "og:description", content: "The NBA 2K27 edition visual experience from Lachy's Visuals." },
+      { title: "NBA 2K27 Visual | Tryhard Visuals" },
+      { name: "description", content: "The NBA 2K27 edition visual experience from Tryhard Visuals." },
+      { property: "og:title", content: "NBA 2K27 Visual | Tryhard Visuals" },
+      { property: "og:description", content: "The NBA 2K27 edition visual experience from Tryhard Visuals." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

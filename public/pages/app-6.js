@@ -110,7 +110,7 @@
 
           const isRealAccessKey = value => {
             const candidate = String(value || '').trim();
-            return /^LACHY-(?:[A-Z0-9]{5}-){3}[A-Z0-9]{5}$/i.test(candidate)
+            return /^TRYHARD-(?:[A-Z0-9]{5}-){3}[A-Z0-9]{5}$/i.test(candidate)
               && !candidate.includes('•')
               && !candidate.includes('*');
           };
@@ -166,7 +166,7 @@
           if (target.id === 'settingsAccessKey') {
             const isRealAccessKey = value => {
               const candidate = String(value || '').trim();
-              return /^LACHY-(?:[A-Z0-9]{5}-){3}[A-Z0-9]{5}$/i.test(candidate)
+              return /^TRYHARD-(?:[A-Z0-9]{5}-){3}[A-Z0-9]{5}$/i.test(candidate)
                 && !candidate.includes('•')
                 && !candidate.includes('*');
             };
@@ -222,7 +222,7 @@
       });
 
       logoutButton?.addEventListener('click', async () => {
-        if (!confirm('Log out of Lachy\'s Visuals on this browser? Your key stays bound to this device and can be used again here.')) return;
+        if (!confirm('Log out of Tryhard Visuals on this browser? Your key stays bound to this device and can be used again here.')) return;
         logoutButton.disabled = true;
         logoutButton.textContent = 'Logging out…';
         try {
