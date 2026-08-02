@@ -17,6 +17,7 @@ import { Route as Fc27RouteImport } from './routes/fc27'
 import { Route as FortniteRouteImport } from './routes/fortnite'
 import { Route as GiftCardRouteImport } from './routes/gift-card'
 import { Route as RobloxMobileRouteImport } from './routes/roblox-mobile'
+import { Route as ApiActivityRouteImport } from './routes/api/activity'
 import { Route as ApiCheckSessionRouteImport } from './routes/api/check-session'
 import { Route as ApiRedeemKeyRouteImport } from './routes/api/redeem-key'
 
@@ -60,6 +61,11 @@ const RobloxMobileRoute = RobloxMobileRouteImport.update({
   path: '/roblox-mobile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiActivityRoute = ApiActivityRouteImport.update({
+  id: '/api/activity',
+  path: '/api/activity',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiCheckSessionRoute = ApiCheckSessionRouteImport.update({
   id: '/api/check-session',
   path: '/api/check-session',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/fortnite': typeof FortniteRoute
   '/gift-card': typeof GiftCardRoute
   '/roblox-mobile': typeof RobloxMobileRoute
+  '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/fortnite': typeof FortniteRoute
   '/gift-card': typeof GiftCardRoute
   '/roblox-mobile': typeof RobloxMobileRoute
+  '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/fortnite': typeof FortniteRoute
   '/gift-card': typeof GiftCardRoute
   '/roblox-mobile': typeof RobloxMobileRoute
+  '/api/activity': typeof ApiActivityRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/fortnite'
     | '/gift-card'
     | '/roblox-mobile'
+    | '/api/activity'
     | '/api/check-session'
     | '/api/redeem-key'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/fortnite'
     | '/gift-card'
     | '/roblox-mobile'
+    | '/api/activity'
     | '/api/check-session'
     | '/api/redeem-key'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/fortnite'
     | '/gift-card'
     | '/roblox-mobile'
+    | '/api/activity'
     | '/api/check-session'
     | '/api/redeem-key'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   FortniteRoute: typeof FortniteRoute
   GiftCardRoute: typeof GiftCardRoute
   RobloxMobileRoute: typeof RobloxMobileRoute
+  ApiActivityRoute: typeof ApiActivityRoute
   ApiCheckSessionRoute: typeof ApiCheckSessionRoute
   ApiRedeemKeyRoute: typeof ApiRedeemKeyRoute
 }
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobloxMobileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/activity': {
+      id: '/api/activity'
+      path: '/api/activity'
+      fullPath: '/api/activity'
+      preLoaderRoute: typeof ApiActivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/check-session': {
       id: '/api/check-session'
       path: '/api/check-session'
@@ -244,19 +264,10 @@ const rootRouteChildren: RootRouteChildren = {
   FortniteRoute: FortniteRoute,
   GiftCardRoute: GiftCardRoute,
   RobloxMobileRoute: RobloxMobileRoute,
+  ApiActivityRoute: ApiActivityRoute,
   ApiCheckSessionRoute: ApiCheckSessionRoute,
   ApiRedeemKeyRoute: ApiRedeemKeyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
