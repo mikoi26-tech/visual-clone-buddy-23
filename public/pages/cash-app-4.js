@@ -597,7 +597,7 @@ function App() {
     alt: ""
   }), React.createElement("span", {
     className: "cash-island-copy"
-  }, React.createElement("strong", null, "Cash App"), React.createElement("span", null, "Lachy's visual is active")), React.createElement("span", {
+  }, React.createElement("strong", null, "Cash App"), React.createElement("span", null, "Tryhard visual is active")), React.createElement("span", {
     className: "cash-island-pulse"
   })));
   const SBar = ({

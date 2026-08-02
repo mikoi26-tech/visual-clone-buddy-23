@@ -222,7 +222,7 @@
       });
 
       logoutButton?.addEventListener('click', async () => {
-        if (!confirm('Log out of Lachy\'s Visuals on this browser? Your key stays bound to this device and can be used again here.')) return;
+        if (!confirm('Log out of Tryhard Visuals on this browser? Your key stays bound to this device and can be used again here.')) return;
         logoutButton.disabled = true;
         logoutButton.textContent = 'Logging out…';
         try {

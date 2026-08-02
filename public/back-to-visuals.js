@@ -80,7 +80,7 @@
   const link = document.createElement('a');
   link.id = 'lvBackToVisuals';
   link.href = '/app/#visuals';
-  link.setAttribute('aria-label', 'Back to Lachy\'s Visuals');
+  link.setAttribute('aria-label', 'Back to Tryhard Visuals');
   link.innerHTML = `
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6"></path></svg>
     <span>Back to Visuals</span>
