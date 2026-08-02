@@ -3,13 +3,7 @@
 
   const HOME_URL = 'https://lachyvisuals.com/';
   const host = location.hostname.toLowerCase();
-  const allowedHost =
-    host === 'lachyvisuals.com' ||
-    host === 'www.lachyvisuals.com' ||
-    host === 'lachyvisuals.netlify.app' ||
-    host.endsWith('--lachyvisuals.netlify.app') ||
-    host === 'localhost' ||
-    host === '127.0.0.1';
+  const allowedHost = location.protocol === 'http:' || location.protocol === 'https:';
 
   // A saved/copied page opened from disk or re-hosted elsewhere should not be usable as-is.
   if (!allowedHost) {
