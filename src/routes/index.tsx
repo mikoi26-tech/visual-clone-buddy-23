@@ -36,5 +36,5 @@ function Index() {
     };
   }, []);
 
-  return <div dangerouslySetInnerHTML={{ __html: lvMarkup }} />;
+  return <div style={{ display: "contents" }} dangerouslySetInnerHTML={{ __html: lvMarkup }} />;
 }
