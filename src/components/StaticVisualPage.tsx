@@ -24,6 +24,14 @@ export function StaticVisualPage({ slug }: { slug: string }) {
       const html = await fetch(`/pages/${slug}.html`).then((r) => r.text());
       if (cancelled) return;
 
+      // The original pages lived at /<slug>/, so relative asset URLs must resolve there.
+      const base = document.createElement("base");
+      base.href = `/${slug}/`;
+      document.head.prepend(base);
+      added.push(base);
+
+
+
       for (const sheet of meta.css) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
