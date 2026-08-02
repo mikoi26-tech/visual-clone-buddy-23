@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R2k27RouteImport } from './routes/2k27'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as CashAppRouteImport } from './routes/cash-app'
 import { Route as Fc27RouteImport } from './routes/fc27'
@@ -31,6 +32,11 @@ const IndexRoute = IndexRouteImport.update({
 const R2k27Route = R2k27RouteImport.update({
   id: '/2k27',
   path: '/2k27',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppRoute = AppRouteImport.update({
@@ -92,6 +98,7 @@ const ApiAdminLoginRoute = ApiAdminLoginRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/2k27': typeof R2k27Route
+  '/admin': typeof AdminRoute
   '/app': typeof AppRoute
   '/cash-app': typeof CashAppRoute
   '/fc27': typeof Fc27Route
@@ -107,6 +114,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/2k27': typeof R2k27Route
+  '/admin': typeof AdminRoute
   '/app': typeof AppRoute
   '/cash-app': typeof CashAppRoute
   '/fc27': typeof Fc27Route
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/2k27': typeof R2k27Route
+  '/admin': typeof AdminRoute
   '/app': typeof AppRoute
   '/cash-app': typeof CashAppRoute
   '/fc27': typeof Fc27Route
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/2k27'
+    | '/admin'
     | '/app'
     | '/cash-app'
     | '/fc27'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/2k27'
+    | '/admin'
     | '/app'
     | '/cash-app'
     | '/fc27'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/2k27'
+    | '/admin'
     | '/app'
     | '/cash-app'
     | '/fc27'
@@ -186,6 +198,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R2k27Route: typeof R2k27Route
+  AdminRoute: typeof AdminRoute
   AppRoute: typeof AppRoute
   CashAppRoute: typeof CashAppRoute
   Fc27Route: typeof Fc27Route
@@ -213,6 +226,13 @@ declare module '@tanstack/react-router' {
       path: '/2k27'
       fullPath: '/2k27'
       preLoaderRoute: typeof R2k27RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app': {
@@ -298,6 +318,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R2k27Route: R2k27Route,
+  AdminRoute: AdminRoute,
   AppRoute: AppRoute,
   CashAppRoute: CashAppRoute,
   Fc27Route: Fc27Route,
@@ -313,3 +334,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
