@@ -110,7 +110,7 @@
 
           const isRealAccessKey = value => {
             const candidate = String(value || '').trim();
-            return /^LACHY-(?:[A-Z0-9]{5}-){3}[A-Z0-9]{5}$/i.test(candidate)
+            return /^TRYHARD-(?:[A-Z0-9]{5}-){3}[A-Z0-9]{5}$/i.test(candidate)
               && !candidate.includes('•')
               && !candidate.includes('*');
           };
@@ -166,7 +166,7 @@
           if (target.id === 'settingsAccessKey') {
             const isRealAccessKey = value => {
               const candidate = String(value || '').trim();
-              return /^LACHY-(?:[A-Z0-9]{5}-){3}[A-Z0-9]{5}$/i.test(candidate)
+              return /^TRYHARD-(?:[A-Z0-9]{5}-){3}[A-Z0-9]{5}$/i.test(candidate)
                 && !candidate.includes('•')
                 && !candidate.includes('*');
             };

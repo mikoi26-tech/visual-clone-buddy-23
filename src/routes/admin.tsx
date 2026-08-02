@@ -5,9 +5,9 @@ export const Route = createFileRoute("/admin")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Key Manager | Lachy's Visuals" },
-      { name: "description", content: "Create, revoke and monitor Lachy's Visuals access keys." },
-      { property: "og:title", content: "Key Manager | Lachy's Visuals" },
+      { title: "Key Manager | Tryhard Visuals" },
+      { name: "description", content: "Create, revoke and monitor Tryhard Visuals access keys." },
+      { property: "og:title", content: "Key Manager | Tryhard Visuals" },
       { property: "og:description", content: "Create, revoke and monitor access keys." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

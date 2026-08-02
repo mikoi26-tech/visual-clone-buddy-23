@@ -7,10 +7,10 @@ export const Route = createFileRoute("/fortnite")({
   loader: () => requireUnlocked(),
   head: () => ({
     meta: [
-      { title: "Fortnite Visual | Lachy's Visuals" },
-      { name: "description", content: "The Fortnite item shop visual experience from Lachy's Visuals." },
-      { property: "og:title", content: "Fortnite Visual | Lachy's Visuals" },
-      { property: "og:description", content: "The Fortnite item shop visual experience from Lachy's Visuals." },
+      { title: "Fortnite Visual | Tryhard Visuals" },
+      { name: "description", content: "The Fortnite item shop visual experience from Tryhard Visuals." },
+      { property: "og:title", content: "Fortnite Visual | Tryhard Visuals" },
+      { property: "og:description", content: "The Fortnite item shop visual experience from Tryhard Visuals." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

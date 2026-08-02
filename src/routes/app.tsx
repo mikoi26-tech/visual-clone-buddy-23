@@ -7,10 +7,10 @@ export const Route = createFileRoute("/app")({
   loader: () => requireUnlocked(),
   head: () => ({
     meta: [
-      { title: "Visuals Hub | Lachy's Visuals" },
-      { name: "description", content: "Browse every interactive visual in the Lachy's Visuals library." },
-      { property: "og:title", content: "Visuals Hub | Lachy's Visuals" },
-      { property: "og:description", content: "Browse every interactive visual in the Lachy's Visuals library." },
+      { title: "Visuals Hub | Tryhard Visuals" },
+      { name: "description", content: "Browse every interactive visual in the Tryhard Visuals library." },
+      { property: "og:title", content: "Visuals Hub | Tryhard Visuals" },
+      { property: "og:description", content: "Browse every interactive visual in the Tryhard Visuals library." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

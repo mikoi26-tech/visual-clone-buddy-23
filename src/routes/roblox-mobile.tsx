@@ -7,10 +7,10 @@ export const Route = createFileRoute("/roblox-mobile")({
   loader: () => requireUnlocked(),
   head: () => ({
     meta: [
-      { title: "Roblox Mobile Visual | Lachy's Visuals" },
-      { name: "description", content: "The Roblox mobile visual experience from Lachy's Visuals." },
-      { property: "og:title", content: "Roblox Mobile Visual | Lachy's Visuals" },
-      { property: "og:description", content: "The Roblox mobile visual experience from Lachy's Visuals." },
+      { title: "Roblox Mobile Visual | Tryhard Visuals" },
+      { name: "description", content: "The Roblox mobile visual experience from Tryhard Visuals." },
+      { property: "og:title", content: "Roblox Mobile Visual | Tryhard Visuals" },
+      { property: "og:description", content: "The Roblox mobile visual experience from Tryhard Visuals." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const HOME_URL = 'https://lachyvisuals.com/';
+  const HOME_URL = 'https://tryhardvisuals.com/';
   const host = location.hostname.toLowerCase();
   const allowedHost = location.protocol === 'http:' || location.protocol === 'https:';
 
@@ -19,7 +19,7 @@
       </head>
       <body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#050505;color:#fff;font:600 16px system-ui,sans-serif;text-align:center;padding:24px">
         <div>
-          <div style="font-size:28px;margin-bottom:10px">Lachy's Visuals</div>
+          <div style="font-size:28px;margin-bottom:10px">Tryhard Visuals</div>
           <div style="color:#8f93a1">This copy is not running from an authorized site.</div>
         </div>
       </body>`;

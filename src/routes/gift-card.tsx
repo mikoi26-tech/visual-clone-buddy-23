@@ -7,10 +7,10 @@ export const Route = createFileRoute("/gift-card")({
   loader: () => requireUnlocked(),
   head: () => ({
     meta: [
-      { title: "Gift Card Visual | Lachy's Visuals" },
-      { name: "description", content: "The gift card visual experience from Lachy's Visuals." },
-      { property: "og:title", content: "Gift Card Visual | Lachy's Visuals" },
-      { property: "og:description", content: "The gift card visual experience from Lachy's Visuals." },
+      { title: "Gift Card Visual | Tryhard Visuals" },
+      { name: "description", content: "The gift card visual experience from Tryhard Visuals." },
+      { property: "og:title", content: "Gift Card Visual | Tryhard Visuals" },
+      { property: "og:description", content: "The gift card visual experience from Tryhard Visuals." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

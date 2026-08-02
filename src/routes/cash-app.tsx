@@ -7,10 +7,10 @@ export const Route = createFileRoute("/cash-app")({
   loader: () => requireUnlocked(),
   head: () => ({
     meta: [
-      { title: "Cash App Visual | Lachy's Visuals" },
-      { name: "description", content: "The Cash App visual experience from Lachy's Visuals." },
-      { property: "og:title", content: "Cash App Visual | Lachy's Visuals" },
-      { property: "og:description", content: "The Cash App visual experience from Lachy's Visuals." },
+      { title: "Cash App Visual | Tryhard Visuals" },
+      { name: "description", content: "The Cash App visual experience from Tryhard Visuals." },
+      { property: "og:title", content: "Cash App Visual | Tryhard Visuals" },
+      { property: "og:description", content: "The Cash App visual experience from Tryhard Visuals." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
