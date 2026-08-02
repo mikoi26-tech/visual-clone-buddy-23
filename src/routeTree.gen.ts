@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as ApiCheckSessionRouteImport } from './routes/api/check-session'
 import { Route as ApiRedeemKeyRouteImport } from './routes/api/redeem-key'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiCheckSessionRoute = ApiCheckSessionRouteImport.update({
@@ -31,30 +37,34 @@ const ApiRedeemKeyRoute = ApiRedeemKeyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/api/check-session': typeof ApiCheckSessionRoute
   '/api/redeem-key': typeof ApiRedeemKeyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/check-session' | '/api/redeem-key'
+  fullPaths: '/' | '/app' | '/api/check-session' | '/api/redeem-key'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/check-session' | '/api/redeem-key'
-  id: '__root__' | '/' | '/api/check-session' | '/api/redeem-key'
+  to: '/' | '/app' | '/api/check-session' | '/api/redeem-key'
+  id: '__root__' | '/' | '/app' | '/api/check-session' | '/api/redeem-key'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRoute
   ApiCheckSessionRoute: typeof ApiCheckSessionRoute
   ApiRedeemKeyRoute: typeof ApiRedeemKeyRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/check-session': {
@@ -87,9 +104,20 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRoute,
   ApiCheckSessionRoute: ApiCheckSessionRoute,
   ApiRedeemKeyRoute: ApiRedeemKeyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
