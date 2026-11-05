@@ -142,3 +142,88 @@
     color: var(--color-foreground);
   }
 }
+
+/* Original fictional pirate collection; isolated from the legacy visual pages. */
+:root {
+  --treasure-paper: oklch(0.91 0.071 87);
+  --treasure-ink: oklch(0.25 0.026 70);
+  --treasure-muted: oklch(0.46 0.038 70);
+  --treasure-line: oklch(0.58 0.061 80 / 25%);
+  --treasure-light: oklch(0.98 0.016 90);
+  --treasure-gold: oklch(0.82 0.14 88);
+  --treasure-violet: oklch(0.43 0.17 305);
+  --treasure-violet-light: oklch(0.66 0.11 322);
+  --treasure-copper: oklch(0.65 0.12 62);
+  --treasure-copper-light: oklch(0.83 0.12 81);
+  --treasure-deep-gold: oklch(0.55 0.105 78);
+  --treasure-overlay: oklch(0.18 0.02 70 / 72%);
+  --treasure-shadow: 0 16px 30px oklch(0.29 0.055 70 / 15%);
+}
+.treasure-shop { min-height: 100svh; width: 100%; background: var(--treasure-paper); color: var(--treasure-ink); font-family: "Trebuchet MS", Arial, sans-serif; letter-spacing: 0; }
+.treasure-demo-strip { min-height: 34px; display: flex; justify-content: center; align-items: center; gap: 9px; padding: 8px 18px; background: var(--treasure-ink); color: var(--treasure-light); font-size: 10px; font-weight: 700; text-align: center; }
+.treasure-header, .treasure-intro, .treasure-collection, .treasure-footer { width: min(1180px, calc(100% - 80px)); margin-inline: auto; }
+.treasure-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 92px; border-bottom: 1px solid var(--treasure-line); }
+.treasure-back { color: var(--treasure-ink); padding-left: 0; }
+.treasure-back:hover { background: transparent; text-decoration: underline; }
+.treasure-brand { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 800; }
+.treasure-edition { font-size: 10px; color: var(--treasure-muted); }
+.treasure-intro { padding-block: 45px 30px; }
+.treasure-eyebrow { margin: 0 0 13px; font-size: 11px; font-weight: 700; color: var(--treasure-muted); }
+.treasure-intro h1 { font-size: 76px; line-height: 1.05; font-weight: 900; font-style: italic; margin: 0; letter-spacing: 0; }
+.treasure-title-star { display: inline-block; margin-left: 24px; color: var(--treasure-deep-gold); font-style: normal; }
+.treasure-intro-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 20px; color: var(--treasure-muted); }
+.treasure-intro-bottom p { margin: 0; font-size: 17px; }
+.treasure-intro-bottom span { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.treasure-collection { padding-block: 25px 45px; }
+.treasure-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 27px; }
+.treasure-toolbar h2 { font-size: 19px; margin: 0 0 5px; font-weight: 700; }
+.treasure-toolbar p { font-size: 12px; margin: 0; color: var(--treasure-muted); }
+.treasure-search { display: flex; align-items: center; gap: 10px; padding: 5px 5px 5px 15px; background: var(--treasure-light); border: 1px solid var(--treasure-line); border-radius: 6px; width: min(420px, 100%); }
+.treasure-search input { background: transparent; width: 100%; min-width: 0; outline: none; font-size: 13px; }
+.treasure-search:focus-within { outline: 2px solid var(--treasure-deep-gold); outline-offset: 3px; }
+.treasure-search-button { background: var(--treasure-ink); color: var(--treasure-light); box-shadow: none; }
+.treasure-search-button:hover { background: var(--treasure-muted); }
+.treasure-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.treasure-card { min-height: 460px; padding: 23px; border: 1px solid var(--treasure-line); border-radius: 8px; color: var(--treasure-light); box-shadow: var(--treasure-shadow); overflow: hidden; transition: transform 240ms, box-shadow 240ms; animation: treasure-rise 650ms both; }
+.treasure-card:hover { transform: translateY(-6px); }
+.treasure-card-violet { background: linear-gradient(155deg, var(--treasure-violet), var(--treasure-violet-light)); }
+.treasure-card-gold { background: linear-gradient(155deg, var(--treasure-deep-gold), var(--treasure-gold)); animation-delay: 90ms; }
+.treasure-card-copper { background: linear-gradient(155deg, var(--treasure-copper), var(--treasure-copper-light)); animation-delay: 180ms; }
+.treasure-card-top { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; opacity: .9; }
+.treasure-card h3 { margin: 25px 0 7px; font-size: 27px; font-weight: 900; line-height: 1.15; }
+.treasure-card > p { margin: 0; font-size: 12px; min-height: 30px; }
+.treasure-card img { width: 100%; aspect-ratio: 1; object-fit: contain; margin-block: 2px 8px; transition: transform 500ms; }
+.treasure-card:hover img { transform: rotate(-4deg) scale(1.04); }
+.treasure-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.treasure-card-bottom span { font-size: 9px; line-height: 1.8; }
+.treasure-card-bottom strong { font-size: 17px; }
+.treasure-preview { border: 1px solid var(--treasure-light); color: var(--treasure-light); border-radius: 50%; }
+.treasure-preview:hover { background: var(--treasure-light); color: var(--treasure-ink); }
+.treasure-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--treasure-line); padding-block: 22px; font-size: 10px; color: var(--treasure-muted); }
+.treasure-footer p { margin: 0; }
+.treasure-empty { min-height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+.treasure-modal-backdrop { position: fixed; inset: 0; z-index: 100; padding: 20px; display: grid; place-items: center; background: var(--treasure-overlay); backdrop-filter: blur(5px); }
+.treasure-modal { position: relative; max-width: 440px; width: 100%; max-height: 90svh; overflow-y: auto; padding: 32px; border-radius: 8px; background: var(--treasure-light); color: var(--treasure-ink); box-shadow: var(--treasure-shadow); animation: treasure-rise 250ms both; }
+.treasure-modal-close { position: absolute; top: 12px; right: 12px; }
+.treasure-modal img { width: 230px; height: 230px; object-fit: contain; margin: 10px auto; }
+.treasure-modal h2 { font-weight: 800; font-size: 25px; margin-bottom: 7px; }
+.treasure-modal > p { font-size: 13px; color: var(--treasure-muted); }
+.treasure-preview-notice { display: flex; align-items: center; gap: 12px; margin-block: 23px; padding-block: 15px; border-block: 1px solid var(--treasure-line); font-size: 12px; }
+@keyframes treasure-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 760px) {
+  .treasure-header, .treasure-intro, .treasure-collection, .treasure-footer { width: calc(100% - 36px); }
+  .treasure-header { height: 72px; gap: 12px; }
+  .treasure-edition { display: none; }
+  .treasure-brand { font-size: 11px; }
+  .treasure-intro { padding-top: 32px; }
+  .treasure-intro h1 { font-size: 43px; }
+  .treasure-title-star { margin-left: 8px; }
+  .treasure-intro-bottom { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .treasure-toolbar { flex-direction: column; align-items: stretch; gap: 18px; }
+  .treasure-search { width: 100%; }
+  .treasure-grid { grid-template-columns: 1fr; gap: 18px; }
+  .treasure-card { min-height: 0; }
+  .treasure-card img { display: block; max-width: 300px; margin-inline: auto; }
+  .treasure-footer { align-items: flex-start; flex-direction: column; gap: 9px; }
+}
+@media (prefers-reduced-motion: reduce) { .treasure-shop *, .treasure-shop *::before, .treasure-shop *::after { animation: none !important; transition: none !important; } }

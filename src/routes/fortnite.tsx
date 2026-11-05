@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { StaticVisualPage } from "@/components/StaticVisualPage";
+import { TreasureDemoShop } from "@/components/TreasureDemoShop";
 import { requireUnlocked } from "@/lib/gate.functions";
 
 export const Route = createFileRoute("/fortnite")({
@@ -7,13 +7,13 @@ export const Route = createFileRoute("/fortnite")({
   loader: () => requireUnlocked(),
   head: () => ({
     meta: [
-      { title: "Fortnite Visual | Tryhard Visuals" },
-      { name: "description", content: "The Fortnite item shop visual experience from Tryhard Visuals." },
-      { property: "og:title", content: "Fortnite Visual | Tryhard Visuals" },
-      { property: "og:description", content: "The Fortnite item shop visual experience from Tryhard Visuals." },
+      { title: "Pirate Shop Demo | Tryhard Visuals" },
+      { name: "description", content: "Explore an original fictional pirate collection. A visual demo only, with no purchases, currency, or gifts." },
+      { property: "og:title", content: "Pirate Shop Demo | Tryhard Visuals" },
+      { property: "og:description", content: "Original fictional pirate collectibles in a gold-and-purple demo shop. Nothing is for sale." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: () => <StaticVisualPage slug="fortnite" />,
+  component: TreasureDemoShop,
 });
